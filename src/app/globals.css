@@ -19,8 +19,87 @@
   }
 }
 
+@theme {
+  --bg-primary: #282828;
+}
+
+@font-face {
+  font-family: "GT-America";
+  src:
+    url("/fonts/GT-America-Mono-Regular.woff2") format("woff2"),
+    url("/fonts/GT-America-Mono-Regular.woff") format("woff"),
+    url("/fonts/GT-America-Mono-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GT-America-Thin";
+  src: url("/fonts/GT-America-thin.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+.GT-america {
+  font-family: GT-America, sans-serif;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-primary);
+  color: #dbdbdb;
+  font-family: GT-America-Thin, sans-serif;
+}
+
+.app {
+  background-image: "/space.png";
+  background-size: cover;
+}
+
+#option-color::before {
+  content: "";
+  z-index: -1;
+  /* background-color: blue; */
+  background-color: #161616;
+  border-radius: 200px 200px 30px 40px;
+  -moz-border-radius: 200px 200px 200px 33px;
+  -webkit-border-radius: 200px 200px 200px 33px;
+  width: 100%;
+  height: 100%;
+  bottom: 3.5;
+  transform: rotate(-90deg);
+  width: 12px;
+  height: 15px;
+  left: -15;
+  position: absolute;
+}
+
+/* #option-color::after {
+  content: "";
+  z-index: -1;
+  background-color: blue;
+  border-radius: 200px 200px 30px 30px;
+  -moz-border-radius: 200px 200px 200px 33px;
+  -webkit-border-radius: 200px 200px 200px 33px;
+  width: 100%;
+  height: 100%;
+  bottom: 1;
+  transform: rotate(90deg);
+  width: 12px;
+  height: 15px;
+  right: -15;
+  position: absolute;
+} */
+
+#circle-nav::before {
+  content: "";
+  display: inline-block;
+  background-color: #dbdbdb;
+  position: absolute;
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
 }
