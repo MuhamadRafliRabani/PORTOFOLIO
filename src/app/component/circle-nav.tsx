@@ -1,16 +1,10 @@
 "use client";
 import { useOpen } from "../hooks/context";
+import useHandleOpen from "../hooks/handleOpen";
 import { ScrambleText } from "./ui/scrumble-text";
 
 const CircleNav = () => {
-  const { setIsOpen, isOpen } = useOpen();
-
-  const handleOpen = (name: string) => {
-    setIsOpen((prev) => ({
-      name,
-      open: prev.name === name ? !prev.open : true,
-    }));
-  };
+  const { handleOpen } = useHandleOpen();
 
   return (
     <div
@@ -36,7 +30,7 @@ const CircleNav = () => {
       <ScrambleText
         text="CONTACT"
         className="absolute -bottom-9 left-9 cursor-pointer text-sm font-extralight tracking-wider"
-        onClick={() => handleOpen("about-card")}
+        onClick={() => handleOpen("contact-card")}
       />
     </div>
   );

@@ -1,8 +1,8 @@
-import NavCircleAction from "./component/ui/animate-card";
 import CircleNav from "./component/circle-nav";
 import LinkCardWork from "./component/link-card-work";
 import { ScrambleText } from "./component/ui/scrumble-text";
 import OptionColor from "./component/ui/option-color";
+import AnimateInformationCard from "./component/ui/animated-information-card";
 
 export default function Home() {
   return (
@@ -21,7 +21,7 @@ export default function Home() {
           {/* recenly work */}
           <LinkCardWork />
 
-          <NavCircleAction />
+          <AnimateInformationCard />
           {/* circle nav */}
           <CircleNav />
         </div>

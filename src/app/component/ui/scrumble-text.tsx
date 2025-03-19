@@ -1,6 +1,7 @@
 "use client";
 import { useScramble } from "use-scramble";
 import { ScrambleTextProps } from "../../libs/Index";
+import { useEffect } from "react";
 
 export const ScrambleText = ({
   text,
@@ -15,7 +16,12 @@ export const ScrambleText = ({
     tick: tick,
     overflow: true,
     overdrive: overdrive,
+    scramble: 2,
   });
+
+  useEffect(() => {
+    replay();
+  }, []);
 
   return (
     <div ref={ref} {...props} onMouseEnter={replay}>

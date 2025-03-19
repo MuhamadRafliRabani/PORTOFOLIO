@@ -20,7 +20,12 @@
 }
 
 @theme {
+  --color-primary: #282828;
   --bg-primary: #282828;
+  --border-primary: #282828;
+  --color-second: #dbdbdb;
+  --bg-second: #dbdbdb;
+  --border-second: #dbdbdb;
 }
 
 @font-face {
@@ -46,7 +51,7 @@
 
 body {
   background: var(--bg-primary);
-  color: #dbdbdb;
+  color: var(--color-second);
   font-family: GT-America-Thin, sans-serif;
 }
 
