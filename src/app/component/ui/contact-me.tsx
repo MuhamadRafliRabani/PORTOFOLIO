@@ -2,6 +2,7 @@
 import { Mail } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { ScrambleText } from "./scrumble-text";
 
 const ContactMe = () => {
   const handelCopy = async () => {
@@ -18,9 +19,10 @@ const ContactMe = () => {
       onClick={handelCopy}
     >
       <Mail className="size-3" />
-      <span className="text-xs tracking-wider">
-        MUHAMADRAFLIRABANI@GMAIL.COM
-      </span>
+      <ScrambleText
+        text="MUHAMADRAFLIRABANI@GMAIL.COM"
+        className="text-xs tracking-wider"
+      />
     </Link>
   );
 };

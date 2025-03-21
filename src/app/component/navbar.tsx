@@ -3,7 +3,7 @@ import { ScrambleText } from "./ui/scrumble-text";
 
 const Navbar = () => {
   return (
-    <div className="fixed inset-x-0 top-0 z-50 flex min-h-14 items-end justify-between px-14">
+    <div className="navbar fixed inset-x-0 top-0 z-50 flex min-h-14 items-end justify-between px-14">
       <div className="md:min-w-59 flex items-end justify-between">
         <AlignStartHorizontal className="size-8 -rotate-90 duration-300" />
 

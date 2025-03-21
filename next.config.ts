@@ -1,7 +1,15 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    domains: ["placehold.co"], // Pastikan domain ada di sini
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "placehold.co",
+        pathname: "/**", // Mengizinkan semua gambar dari placehold.co
+      },
+    ],
+  },
 };
 
 export default nextConfig;

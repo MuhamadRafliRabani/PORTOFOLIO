@@ -1,14 +1,27 @@
+"use client";
 import CircleNav from "./component/circle-nav";
 import LinkCardWork from "./component/link-card-work";
 import { ScrambleText } from "./component/ui/scrumble-text";
 import OptionColor from "./component/ui/option-color";
 import AnimateInformationCard from "./component/ui/animated-information-card";
+import PortofiloCard from "./component/portofilo-card";
+import { useRef } from "react";
+import { useHomeAnimations } from "./hooks/use-home-animate";
+import MoodSelector from "./component/ui/loader";
+import CircleLoader from "./component/load";
 
 export default function Home() {
+  const appRef = useRef<HTMLDivElement>(null);
+
+  useHomeAnimations(appRef);
+
   return (
-    <div className="app relative">
-      <div className="relative z-40 mx-auto mt-4 h-[95svh] max-h-screen max-w-7xl rounded-2xl bg-[url('/space.png')] p-4 pt-14 text-white">
-        <div className="flex h-4/5 items-center md:ms-4">
+    <div
+      ref={appRef}
+      className="relative max-h-screen min-h-screen overflow-hidden"
+    >
+      <div className="max-w-320 relative z-40 m-auto mt-4 h-[93svh] max-h-screen rounded-2xl bg-[url('/space.png')] p-4 pt-14 text-white">
+        <div className="app flex h-4/5 items-center md:ms-4">
           <ScrambleText
             text="Hey there! Ready to craft an amazing digital experience with me? ✨"
             className="max-w-60 text-xl uppercase tracking-wider"
@@ -16,19 +29,21 @@ export default function Home() {
           />
         </div>
 
-        {/* title */}
-        <div className="flex items-start justify-between md:-mt-12 md:pe-16 md:ps-4">
-          {/* recenly work */}
-          <LinkCardWork />
+        <div className="-translate-y-[80.5%] overflow-x-hidden">
+          <PortofiloCard />
+        </div>
 
+        {/* title */}
+        <div className="md:pe-22 fixed inset-x-4 top-full z-10 flex -translate-y-full justify-between pb-5 md:ps-10">
+          <LinkCardWork />
           <AnimateInformationCard />
-          {/* circle nav */}
           <CircleNav />
         </div>
 
-        {/* color option */}
         <OptionColor />
       </div>
+      <MoodSelector />
+      {/* <CircleLoader /> */}
     </div>
   );
 }

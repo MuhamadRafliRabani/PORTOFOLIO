@@ -1,7 +1,7 @@
 "use client";
-import { useEffect, useRef } from "react";
-import { useOpen } from "../hooks/context";
-import { useGSAP, gsap } from "./gsap-configure";
+import { useRef } from "react";
+import { useOpen } from "./context";
+import { useGSAP, gsap } from "../libs/gsap-configure";
 
 export const useAnimateCard = (container: React.RefObject<null>) => {
   const { isOpen } = useOpen();

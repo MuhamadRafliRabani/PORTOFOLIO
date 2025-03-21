@@ -26,3 +26,19 @@ export type OpenContextType = {
   isOpen: OpenState;
   setIsOpen: React.Dispatch<React.SetStateAction<OpenState>>;
 };
+
+export type DescriptionItem = {
+  name: string;
+  value: string;
+};
+
+export type Website = {
+  name: string;
+  link: string;
+};
+
+export interface ProjectInfo {
+  description: DescriptionItem[];
+  website: Website;
+  image: string;
+}

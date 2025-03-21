@@ -3,7 +3,7 @@ import { ScrambleText } from "./ui/scrumble-text";
 
 const LinkCardWork = () => {
   return (
-    <div id="card" className="space-y-4 md:-mt-16">
+    <div id="card" className="app space-y-4 md:-mt-16">
       <ScrambleText
         text="RECENT WORK"
         className="block text-sm font-extralight tracking-widest"

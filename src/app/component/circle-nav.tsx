@@ -1,6 +1,5 @@
 "use client";
-import { useOpen } from "../hooks/context";
-import useHandleOpen from "../hooks/handleOpen";
+import useHandleOpen from "../hooks/use-handle-open";
 import { ScrambleText } from "./ui/scrumble-text";
 
 const CircleNav = () => {
@@ -9,7 +8,7 @@ const CircleNav = () => {
   return (
     <div
       id="circle-nav"
-      className="relative inline-block size-28 rounded-full border border-white before:rounded-full"
+      className="app relative inline-block size-28 rounded-full border border-white before:rounded-full"
     >
       <ScrambleText
         text="INDEX"
