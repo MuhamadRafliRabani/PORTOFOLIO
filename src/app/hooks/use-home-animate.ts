@@ -20,16 +20,15 @@ export const useHomeAnimations = (
       },
     });
 
-    gsap.to(".app", {
+    gsap.to(".item", {
       scale: 0.95,
-      opacity: 0,
-      display: "none",
+      opacity: 0.9,
       duration: 1,
       ease: "power3.out",
       scrollTrigger: {
         trigger: ".app",
-        start: "top top",
-        end: "bottom top",
+        start: "top 5%",
+        end: "bottom 75%",
         scrub: true,
       },
     });
@@ -42,8 +41,8 @@ export const useHomeAnimations = (
       ease: "power3.out",
       scrollTrigger: {
         trigger: ".app",
-        start: "top top",
-        end: "bottom top",
+        start: "top 5%",
+        end: "bottom 75%",
         scrub: true,
       },
     });

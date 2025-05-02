@@ -6,10 +6,7 @@ import { ScrambleText } from "./ui/scrumble-text";
 
 const ContactCard = () => {
   return (
-    <CardLayout
-      id="contact-card"
-      className={`z-70 relative top-0 w-fit transition-all duration-300`}
-    >
+    <CardLayout id="contact-card">
       <p className="block text-sm">CONTACT</p>
       <form action="">
         <ContactMe />

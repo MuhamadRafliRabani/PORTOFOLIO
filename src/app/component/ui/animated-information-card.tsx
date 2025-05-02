@@ -11,7 +11,7 @@ const AnimateInformationCard = () => {
   return (
     <div
       ref={container}
-      className="h-77 z-90 -top-90 absolute right-4 w-fit max-w-80 overflow-hidden md:pe-1 md:ps-5 md:pt-5"
+      className="-left-30 -top-85 min-w-70 h-78 absolute z-40 w-auto overflow-hidden"
     >
       <AboutCard />
       <ContactCard />

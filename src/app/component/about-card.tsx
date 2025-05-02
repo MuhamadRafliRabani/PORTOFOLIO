@@ -3,10 +3,7 @@ import CardLayout from "./card-layout";
 
 const AboutCard = () => {
   return (
-    <CardLayout
-      id="about-card"
-      className={`z-75 relative bottom-0 top-0 transition-all duration-300`}
-    >
+    <CardLayout id="about-card">
       <Image
         src="/profil.jpg"
         className="absolute -left-5 -top-5 z-40 size-16 rounded-full object-cover object-top"
@@ -14,6 +11,7 @@ const AboutCard = () => {
         height={64}
         alt="PROFIL IMAGE"
       />
+
       <p className="pt-10 text-xs">MUHAMAD RAFLI RABANI</p>
       <div className="space-y-1.5 text-[10px] font-medium text-[#6d6d6d]">
         <p>Combining design expertise with Webflow development.</p>

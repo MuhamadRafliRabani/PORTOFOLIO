@@ -24,8 +24,8 @@ export const ScrambleText = ({
   }, []);
 
   return (
-    <div ref={ref} {...props} onMouseEnter={replay}>
+    <span ref={ref} {...props} onMouseEnter={replay}>
       {text}
-    </div>
+    </span>
   );
 };

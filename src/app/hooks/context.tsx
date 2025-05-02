@@ -1,23 +1,9 @@
-"use client";
-import { createContext, ReactNode, useContext, useState } from "react";
-import { OpenContextType, OpenState } from "../libs/Index";
+import { atom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
+import { haveMoodOption, themeOption } from "../libs/Index";
 
-const OpenContext = createContext<OpenContextType | undefined>(undefined);
+export const openCard = atom({ name: "", open: false });
 
-export const OpenProvider = ({ children }: { children: ReactNode }) => {
-  const [isOpen, setIsOpen] = useState<OpenState>({ name: "", open: false });
+export const mainTheme = atomWithStorage<themeOption>("theme", "night");
 
-  return (
-    <OpenContext.Provider value={{ isOpen, setIsOpen }}>
-      {children}
-    </OpenContext.Provider>
-  );
-};
-
-export const useOpen = (): OpenContextType => {
-  const context = useContext(OpenContext);
-  if (!context) {
-    throw new Error("useOpen must be used within an OpenProvider");
-  }
-  return context;
-};
+export const haveMood = atomWithStorage<haveMoodOption>("haveMood", "false");

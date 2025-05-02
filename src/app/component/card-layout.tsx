@@ -9,7 +9,7 @@ const CardLayout = ({ children, ...props }: CardLayoutProps) => {
   return (
     <div
       {...props}
-      className={`GT-america border-primary relative inline-block h-fit min-h-20 w-fit min-w-60 space-y-2 rounded-lg border bg-[#161616] p-4 uppercase tracking-wider opacity-0 shadow-xl ${id === "about-card" ? "max-w-60" : "max-w-72"}`}
+      className={`GT-america border-primary relative inline-block h-fit space-y-2 rounded-lg border bg-[#161616] p-4 uppercase tracking-wider opacity-0 shadow-sm ${id === "about-card" ? "ms-5 mt-5 w-60" : "min-w-70 w-60"}`}
     >
       {children}
 

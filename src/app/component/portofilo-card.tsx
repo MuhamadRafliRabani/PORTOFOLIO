@@ -19,17 +19,37 @@ const PortofiloCard = () => {
     const cards = gsap.utils.toArray(".porto-card");
 
     gsap.fromTo(
-      cards,
-      { x: 2300, opacity: 0 }, // Awal animasi (geser 200px ke kanan & opacity 0)
+      ".project",
       {
-        x: 0,
-        opacity: 1,
-        duration: 1,
+        x: 2300,
+      },
+      {
+        x: -40,
+        duration: 3,
         ease: "power2.out",
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top 5%", // Animasi mulai saat kartu hampir terlihat
-          end: "bottom 80%",
+          start: "top 5%",
+          end: "90% 75%",
+          scrub: true,
+          anticipatePin: 1,
+          toggleActions: "play none none reverse",
+        },
+      },
+    );
+
+    gsap.fromTo(
+      cards,
+      { x: 2300, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 3,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 20%", // Animasi mulai saat kartu hampir terlihat
+          end: "80% 75%",
           scrub: true,
           anticipatePin: 1,
           toggleActions: "play none none reverse",
@@ -41,7 +61,7 @@ const PortofiloCard = () => {
   return (
     <div
       ref={containerRef}
-      className="GT-america z-90 relative flex gap-5 overflow-hidden"
+      className="GT-america z-90 relative mt-4 flex gap-5 overflow-hidden"
     >
       {portpfolio.map((data, index) => (
         <div

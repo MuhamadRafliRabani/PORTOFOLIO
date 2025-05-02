@@ -1,7 +1,8 @@
-import { useOpen } from "./context";
+import { useAtom } from "jotai";
+import { openCard } from "./context";
 
 const useHandleOpen = () => {
-  const { setIsOpen, isOpen } = useOpen();
+  const [isOpen, setIsOpen] = useAtom(openCard);
 
   const handleOpen = (name: string) => {
     setIsOpen((prev) => ({

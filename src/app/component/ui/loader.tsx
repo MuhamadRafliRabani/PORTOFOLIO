@@ -1,59 +1,216 @@
 "use client";
-import { useEffect, useRef, useState, useMemo, useCallback } from "react";
+import { useEffect, useRef, useMemo, useCallback } from "react";
 import gsap from "gsap";
 import { ScrambleText } from "./scrumble-text";
 import { Plus } from "lucide-react";
-
-const MODES = [
-  {
-    name: "LIGHT",
-    deg: -47,
-    className: "-left-30 top-3/6 absolute -rotate-45",
-  },
-  { name: "DARK", deg: 0, className: "-top-10.5 absolute -left-2" },
-  {
-    name: "SPRING",
-    deg: 48,
-    className: "rotate-51 -right-34 absolute -bottom-11",
-  },
-];
+import { DataTheme } from "@/app/data/theme";
+import { useHandleTheme } from "@/app/hooks/use-handle-theme";
+import { useHandleMood } from "@/app/hooks/use-handle-mood";
+import { themeOption } from "@/app/libs/Index";
 
 export default function MoodSelector() {
-  const [selectedMode, setSelectedMode] = useState(1);
+  const { theme, setHandleTheme } = useHandleTheme();
+  const { handleMoodChange, mood } = useHandleMood();
   const knobRef = useRef<SVGSVGElement>(null);
 
-  const rotationDeg = useMemo(() => MODES[selectedMode].deg, [selectedMode]);
+  const dataTheme = useMemo(
+    () => DataTheme.find((item) => item.name === theme),
+    [theme],
+  );
 
   useEffect(() => {
-    if (knobRef.current) {
+    if (knobRef.current && dataTheme !== null) {
       gsap.to(knobRef.current, {
-        rotation: rotationDeg,
+        rotation: dataTheme?.deg,
         duration: 0.9,
         ease: "back.out",
       });
     }
-  }, [rotationDeg]);
+  }, [dataTheme]);
 
-  const handleClick = useCallback((index: number) => {
-    setSelectedMode(index);
-  }, []);
+  const handleClick = useCallback(
+    (newTheme: themeOption) => {
+      setHandleTheme(newTheme);
+    },
+    [theme],
+  );
+
+  const currentMood = mood === "false";
 
   return (
-    <div className="z-90 fixed inset-0 flex min-h-screen items-center justify-center bg-[#161616]">
-      <div className="grid-rows-[1fr 50px] z-60 relative grid h-fit w-full place-content-center gap-5">
+    <div className="mood-selector z-999 fixed inset-0 flex min-h-screen w-screen items-center justify-center">
+      <div className="grid-rows-[1fr 50px] z-60 grid h-svh min-h-screen w-full place-content-center gap-5">
         {/* Mode Selection */}
-        <div className="absolute left-1/2 top-0 z-50">
-          {MODES.map((mode, i) => (
+        <div
+          className={`relative transform-gpu transition-all duration-300 ease-in-out ${currentMood ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
+        >
+          <svg
+            width="575"
+            height="575"
+            viewBox="0 0 575 575"
+            fill="none"
+            className="size-65 border-secondary rounded-full border"
+            xmlns="http://www.w3.org/2000/svg"
+            ref={knobRef}
+          >
+            <g id="Clock_body">
+              <g id="Hours">
+                <g id="11">
+                  <rect
+                    width="8"
+                    height="50"
+                    transform="translate(186.045 100.527) rotate(149)"
+                    fill="#DEDEDE"
+                    className="stroke-secondary fill-secondary"
+                  />
+                </g>
+                <g id="10">
+                  <rect
+                    width="8"
+                    height="50"
+                    transform="translate(106.751 175.265) rotate(119)"
+                    fill="#DEDEDE"
+                    className="stroke-secondary fill-secondary"
+                  />
+                </g>
+                <g id="9">
+                  <rect
+                    width="8"
+                    height="50"
+                    transform="translate(76 278) rotate(90)"
+                    fill="#DEDEDE"
+                    className="stroke-secondary fill-secondary"
+                  />
+                </g>
+                <g id="8">
+                  <rect
+                    width="8"
+                    height="50"
+                    transform="translate(100.527 385.677) rotate(59)"
+                    fill="#DEDEDE"
+                    className="stroke-secondary fill-secondary"
+                  />
+                </g>
+                <g id="7">
+                  <rect
+                    width="8"
+                    height="50"
+                    transform="translate(175.265 464.972) rotate(29)"
+                    fill="#DEDEDE"
+                    className="stroke-secondary fill-secondary"
+                  />
+                </g>
+                <g id="6&#231;&#130;&#185;">
+                  <rect
+                    width="8"
+                    height="50"
+                    transform="translate(278 496)"
+                    fill="#DEDEDE"
+                    className="stroke-secondary fill-secondary"
+                  />
+                </g>
+                <g id="5">
+                  <rect
+                    width="8"
+                    height="50"
+                    transform="translate(385.677 471.196) rotate(-31)"
+                    fill="#DEDEDE"
+                    className="stroke-secondary fill-secondary"
+                  />
+                </g>
+                <g id="4">
+                  <rect
+                    width="8"
+                    height="50"
+                    transform="translate(464.971 396.457) rotate(-61)"
+                    fill="#DEDEDE"
+                    className="stroke-secondary fill-secondary"
+                  />
+                </g>
+                <g id="3">
+                  <rect
+                    width="8"
+                    height="50"
+                    transform="translate(496 294) rotate(-90)"
+                    fill="#DEDEDE"
+                    className="stroke-secondary fill-secondary"
+                  />
+                </g>
+                <g id="2">
+                  <rect
+                    width="8"
+                    height="50"
+                    transform="translate(471.195 186.045) rotate(-121)"
+                    fill="#DEDEDE"
+                    className="stroke-secondary fill-secondary"
+                  />
+                </g>
+                <g id="1">
+                  <rect
+                    width="8"
+                    height="50"
+                    transform="translate(396.457 106.751) rotate(-151)"
+                    fill="#DEDEDE"
+                    className="stroke-secondary fill-secondary"
+                  />
+                </g>
+                <path
+                  id="Polygon 1"
+                  d="M282.5 21L309.78 68.25H255.22L282.5 21Z"
+                  fill="#DEDEDE"
+                  className="fill-secondary"
+                />
+              </g>
+            </g>
+            <defs>
+              <filter
+                id="filter0_d_2_335"
+                x="0.344866"
+                y="0.344866"
+                width="573.791"
+                height="573.791"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+              >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feColorMatrix
+                  in="SourceAlpha"
+                  type="matrix"
+                  values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha"
+                />
+                <feOffset dx="1.3793" dy="1.3793" />
+                <feGaussianBlur stdDeviation="5.51722" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix
+                  type="matrix"
+                  values="0 0 0 0 0.952941 0 0 0 0 0.952941 0 0 0 0 0.952941 0 0 0 0.25 0"
+                />
+                <feBlend
+                  mode="normal"
+                  in2="BackgroundImageFix"
+                  result="effect1_dropShadow_2_335"
+                />
+                <feBlend
+                  mode="normal"
+                  in="SourceGraphic"
+                  in2="effect1_dropShadow_2_335"
+                  result="shape"
+                />
+              </filter>
+            </defs>
+          </svg>
+          {DataTheme.map((mode, i) => (
             <button
-              key={mode.name}
-              className={`${mode.className} min-w-5 cursor-pointer tracking-wide transition-opacity ${
-                selectedMode === i ? "opacity-100" : "opacity-70"
+              key={i}
+              className={`${mode.className} min-w-5 cursor-pointer uppercase tracking-wide transition-opacity ${
+                theme === mode?.name ? "opacity-100" : "opacity-70"
               }`}
-              onClick={() => handleClick(i)}
+              onClick={() => handleClick(mode.name)}
             >
               <span
                 className={`mx-auto block size-2.5 rounded-full border ${
-                  selectedMode === i
+                  theme === mode?.name
                     ? "border-none bg-red-500"
                     : "border-gray-500 bg-transparent"
                 }`}
@@ -63,69 +220,20 @@ export default function MoodSelector() {
                 overdrive={32}
                 tick={1}
                 speed={0.9}
+                className="tracking-wide"
               />
             </button>
           ))}
         </div>
 
-        <svg
-          width="552"
-          height="552"
-          viewBox="0 0 552 552"
-          fill="none"
-          className="ms-2 size-60"
-          xmlns="http://www.w3.org/2000/svg"
-          ref={knobRef}
+        <p className="min-w-3xs ms-2 tracking-wider">
+          SET THE MOOD THAT MATCHES WITH YOUR VIBE
+        </p>
+
+        <button
+          onClick={() => handleMoodChange("true")}
+          className={`${theme === "spring" ? "bg-[#dedede] text-[#161616]" : "bg-secondary text-primary"} mx-auto my-auto flex h-8 w-fit cursor-pointer items-center justify-center gap-1.5 rounded-full py-1 pe-2 ps-4 text-[15px]/[7px] font-medium tracking-wide`}
         >
-          <g id="Clock_body">
-            <rect
-              x="0.778"
-              y="0.778"
-              width="550.722"
-              height="550.722"
-              rx="275.361"
-              stroke="#DEDEDE"
-            />
-            <g id="Hours">
-              {[
-                { transform: "translate(116.832 134.88) rotate(129)" },
-                { transform: "translate(68.6876 267.688) rotate(90)" },
-                { transform: "translate(113.093 423.266) rotate(50)" },
-                { transform: "translate(279 487)" },
-                { transform: "translate(448.173 422.637) rotate(-51)" },
-                { transform: "translate(488.688 283.688) rotate(-90)" },
-                { transform: "translate(448.299 139.251) rotate(-128)" },
-              ].map((props, idx) => (
-                <rect
-                  key={idx}
-                  width="4"
-                  height="30"
-                  {...props}
-                  fill="#DEDEDE"
-                />
-              ))}
-              <path
-                d="M282.5 53L296.789 81.5H268.211L282.5 53Z"
-                fill="#D9D9D9"
-              />
-              <path
-                opacity="0.8"
-                d="M279.714 266.714V259H282.286V266.714H290V269.286H282.286V277H279.714V269.286H272V266.714H279.714Z"
-                fill="#DEDEDE"
-              />
-            </g>
-          </g>
-        </svg>
-
-        <ScrambleText
-          overdrive={32}
-          tick={1}
-          speed={1}
-          text="SET THE MOOD THAT MATCHES WITH YOUR VIBE"
-          className="min-w-3xs tracking-wider"
-        />
-
-        <button className="bg-second text-primary mx-auto my-auto flex h-8 w-fit cursor-pointer items-center justify-center gap-1.5 rounded-full py-1 pe-2 ps-4 text-[15px]/[7px] font-medium tracking-wide">
           <ScrambleText
             overdrive={32}
             tick={1}
@@ -138,7 +246,7 @@ export default function MoodSelector() {
           </span>
         </button>
 
-        <div className="bg-dots h-35 absolute inset-x-0 -bottom-32 -z-10 w-full"></div>
+        <span className="bg-dots md:h-35 absolute inset-x-0 -bottom-5 -z-10 w-full"></span>
       </div>
     </div>
   );

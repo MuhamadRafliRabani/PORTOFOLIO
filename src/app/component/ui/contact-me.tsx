@@ -22,6 +22,7 @@ const ContactMe = () => {
       <ScrambleText
         text="MUHAMADRAFLIRABANI@GMAIL.COM"
         className="text-xs tracking-wider"
+        tick={1}
       />
     </Link>
   );

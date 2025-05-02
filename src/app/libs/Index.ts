@@ -42,3 +42,16 @@ export interface ProjectInfo {
   website: Website;
   image: string;
 }
+
+export type themeOption = "night" | "light" | "spring";
+export type haveMoodOption = "true" | "false";
+
+export interface TypeDataTheme {
+  name: themeOption;
+  deg: number;
+  className: string;
+}
+
+export interface HocInterface {
+  children: ReactNode;
+}
