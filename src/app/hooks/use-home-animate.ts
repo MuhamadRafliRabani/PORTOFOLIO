@@ -5,48 +5,58 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const ELEMENTS_TO_FADE = ["#black-hole", ".globe", ".navbar", ".item"];
+
 export const useHomeAnimations = (
   appRef: React.RefObject<HTMLDivElement | null>,
+  projectRef: React.RefObject<HTMLDivElement | null>,
 ) => {
   useEffect(() => {
-    if (!appRef.current) return;
+    if (!appRef.current || !projectRef?.current) return;
 
-    gsap.to(appRef.current, {
+    const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: appRef.current,
         start: "top top",
-        end: "+=350",
+        end: "+=600",
         pin: true,
-      },
-    });
-
-    gsap.to(".item", {
-      scale: 0.95,
-      opacity: 0.9,
-      duration: 1,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".app",
-        start: "top 5%",
-        end: "bottom 75%",
         scrub: true,
+        // markers: true, // aktifkan untuk debug
       },
     });
 
-    gsap.to(".navbar", {
-      scale: 0.95,
-      opacity: 0,
-      display: "none",
-      duration: 1,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".app",
-        start: "top 5%",
-        end: "bottom 75%",
-        scrub: true,
+    // Fade out semua elemen yang perlu hilang
+    timeline.to(
+      ELEMENTS_TO_FADE,
+      {
+        scale: 0.9,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power3.out",
+        stagger: 0.05,
       },
-    });
+      0,
+    );
 
-    return () => ScrollTrigger.getAll().forEach((st) => st.kill()); // Hapus animasi saat komponen unmount
-  }, [appRef]);
+    // Project slide-in dari kiri
+    timeline.fromTo(
+      projectRef.current,
+      {
+        x: 1500,
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power2.out",
+      },
+      0,
+    );
+
+    return () => {
+      timeline.kill();
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
+  }, [appRef, projectRef]);
 };

@@ -1,111 +1,140 @@
 "use client";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useRef } from "react";
+import { RefObject, useCallback, useEffect, useState } from "react";
 import { portpfolio } from "../data/portofolio";
 import { DescriptionItem } from "../libs/Index";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { useHandleScrollToTop } from "../hooks/useScrollByClick";
+import useEmblaCarousel from "embla-carousel-react";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const PortofiloCard = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(() => {
-    if (!containerRef.current) return;
-
-    const cards = gsap.utils.toArray(".porto-card");
-
-    gsap.fromTo(
-      ".project",
-      {
-        x: 2300,
-      },
-      {
-        x: -40,
-        duration: 3,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 5%",
-          end: "90% 75%",
-          scrub: true,
-          anticipatePin: 1,
-          toggleActions: "play none none reverse",
-        },
-      },
-    );
-
-    gsap.fromTo(
-      cards,
-      { x: 2300, opacity: 0 },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 3,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 20%", // Animasi mulai saat kartu hampir terlihat
-          end: "80% 75%",
-          scrub: true,
-          anticipatePin: 1,
-          toggleActions: "play none none reverse",
-        },
-      },
-    );
+type portofiloCard = {
+  projectRef: RefObject<HTMLDivElement | null>;
+};
+const PortofiloCard = ({ projectRef }: portofiloCard) => {
+  const [closeVisible, setCloseVisible] = useState<boolean>(false);
+  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
+  const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
   });
+
+  const onPrevButtonClick = useCallback(() => {
+    if (!emblaApi) return;
+    emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const onNextButtonClick = useCallback(() => {
+    if (!emblaApi) return;
+    emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+
+    setPrevBtnDisabled(!emblaApi.canScrollPrev());
+    setNextBtnDisabled(!emblaApi.canScrollNext());
+  }, []);
+
+  useEffect(() => {
+    setCloseVisible(true);
+    if (!emblaApi) return;
+
+    onSelect(); // update status tombol saat init
+    emblaApi.on("select", onSelect); // update saat scroll berubah
+  }, [emblaApi, onSelect]);
 
   return (
     <div
-      ref={containerRef}
-      className="GT-america z-90 relative mt-4 flex gap-5 overflow-hidden"
+      ref={projectRef}
+      className="w-320 relative z-50 translate-y-[43vh] bg-[var(--bg-background)]"
     >
-      {portpfolio.map((data, index) => (
-        <div
-          key={index}
-          className="porto-card bg-primary md:min-w-xl h-135 grid-rows-[80px 1fr 80px] group grid w-full max-w-3xl gap-4 rounded-lg shadow-xl transition-transform duration-300 hover:scale-105"
-        >
-          <div className="box-border inline-flex h-full max-h-20 w-full -translate-y-10 justify-between px-4 pt-2 transition-all duration-300 group-hover:translate-y-0">
-            <Description descriptions={data.description} />
-          </div>
-          <div className="w-md m-auto inline-block h-[95%] overflow-hidden rounded-md">
-            <Image
-              src={data.image}
-              alt={data.website.name}
-              width={800}
-              height={1000}
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <div className="mt-auto h-full max-h-20 w-full px-4 py-2">
-            <p className="text-xs opacity-70">
-              WEBSITE:
-              <Link
-                href={data.website.link}
-                className="block cursor-pointer text-[11px] group-hover:underline"
-              >
-                {data.website.name}
-              </Link>
-            </p>
-          </div>
+      <div className="embla__viewport w-full overflow-hidden" ref={emblaRef}>
+        <div className="embla__container flex h-full min-h-[90vh] flex-nowrap items-center justify-start gap-2 text-xs font-medium">
+          {portpfolio.map((data, index) => (
+            <div
+              key={index}
+              className="embla__slide h-full flex-[0_0_50%] overflow-hidden rounded-xl bg-[var(--bg-primary)] text-white"
+            >
+              <CardContent data={data} />
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
+
+      {/* Controls (harus di luar .viewport) */}
+      <div className="z-70 absolute inset-x-0 bottom-0 flex w-full items-center justify-between text-white">
+        <div className="space-x-4">
+          <button
+            onClick={onPrevButtonClick}
+            style={prevBtnDisabled ? { opacity: 0.1 } : { opacity: 1 }}
+            disabled={prevBtnDisabled}
+            className="rounded-lg border border-white"
+          >
+            <ChevronLeft className="size-10 p-2" />
+          </button>
+          <button
+            onClick={onNextButtonClick}
+            style={nextBtnDisabled ? { opacity: 0 } : { opacity: 1 }}
+            disabled={nextBtnDisabled}
+            className="rounded-lg border border-white"
+          >
+            <ChevronRight className="size-10 p-2" />
+          </button>
+        </div>
+        <button
+          onClick={() => useHandleScrollToTop()}
+          style={
+            closeVisible
+              ? { opacity: 1 }
+              : { opacity: 0, pointerEvents: "none" }
+          }
+          className="border-primary z-100 size-16 cursor-pointer rounded-full border stroke-1 p-4"
+        >
+          <X />
+        </button>
+      </div>
     </div>
   );
 };
 
 export default PortofiloCard;
 
+const CardContent = ({ data }: { data: (typeof portpfolio)[0] }) => (
+  <div className="GT-america md:min-w-xl grid-rows-[20px 2fr 20px] group grid h-full w-full gap-4 p-3.5 transition-all duration-300">
+    <div className="flex max-h-10 -translate-y-20 items-center justify-between transition-transform duration-300 ease-[cubic-bezier(0.36,_0,_0.64,_1)] group-hover:translate-y-0">
+      <Description descriptions={data.description} />
+    </div>
+    <Link href={data.website.link} target="_blank" rel="noopener noreferrer">
+      <Image
+        src={data.image}
+        alt={data.website.name}
+        width={800}
+        height={1000}
+        className="md:min-h-98 h-full w-full rounded-md object-cover object-left transition-transform duration-300 group-hover:scale-95"
+      />
+    </Link>
+    <span className="max-h-10 text-sm">
+      WEBSITE:
+      <Link
+        href={data.website.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block cursor-pointer text-[11px] underline"
+      >
+        {data.website.name}
+      </Link>
+    </span>
+  </div>
+);
+
 const Description: React.FC<{ descriptions: DescriptionItem[] }> = ({
   descriptions,
 }) => (
   <>
     {descriptions.map((item, index) => (
-      <p key={index} className="text-[11px] opacity-70">
-        {item.name}: <span className="block text-xs">{item.value}</span>
+      <p key={index} className="opacity-70">
+        {item.name}: <span className="block text-[11px]">{item.value}</span>
       </p>
     ))}
   </>

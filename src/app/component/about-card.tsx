@@ -12,8 +12,8 @@ const AboutCard = () => {
         alt="PROFIL IMAGE"
       />
 
-      <p className="pt-10 text-xs">MUHAMAD RAFLI RABANI</p>
-      <div className="space-y-1.5 text-[10px] font-medium text-[#6d6d6d]">
+      <p className="text-primary pt-10 text-xs">MUHAMAD RAFLI RABANI</p>
+      <div className="space-y-1.5 text-[10px] font-medium">
         <p>Combining design expertise with Webflow development.</p>
         <p>
           Specialized in crafting experience-driven websites that stand out

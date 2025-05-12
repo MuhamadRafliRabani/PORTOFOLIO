@@ -10,12 +10,17 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@react-three/drei": "^10.0.7",
+    "@react-three/fiber": "^9.1.2",
+    "@react-three/postprocessing": "^3.0.4",
+    "embla-carousel-react": "^8.6.0",
     "gsap": "^3.12.7",
     "jotai": "^2.12.2",
-    "lucide-react": "^0.482.0",
+    "lucide-react": "^0.509.0",
     "next": "15.2.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "three": "^0.176.0",
     "use-scramble": "^2.2.15"
   },
   "devDependencies": {

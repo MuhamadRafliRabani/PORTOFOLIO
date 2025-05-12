@@ -9,6 +9,7 @@ export interface ScrambleTextProps
   text: string;
   speed?: number;
   tick?: number;
+  step?: number;
   overdrive?: number;
 }
 

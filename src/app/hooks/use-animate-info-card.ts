@@ -28,24 +28,17 @@ export const useAnimateCard = (container: React.RefObject<null>) => {
             .to(contactCard, {
               translateY: 200,
               display: "block",
-              opacity: 0,
-              duration: 0.5,
-              ease: "power4.in",
+              duration: 0.65,
+              ease: "power4.inOut",
             })
-            .fromTo(
+            .to(
               aboutCard,
-              {
-                translateY: 200,
-                display: "noen",
-
-                opacity: 0,
-              },
               {
                 translateY: 0,
                 opacity: 1,
-                duration: 0.8,
+                duration: 0.65,
                 display: "block",
-                ease: "back.inOut",
+                ease: "power4.inOut",
               },
               "-=0.3",
             );
@@ -57,22 +50,17 @@ export const useAnimateCard = (container: React.RefObject<null>) => {
               translateY: 200,
               display: "block",
               opacity: 0,
-              duration: 0.5,
-              ease: "power4.in",
+              duration: 0.65,
+              ease: "power4.inOut",
             })
-            .fromTo(
+            .to(
               contactCard,
-              {
-                translateY: 200,
-                display: "none",
-                opacity: 0,
-              },
               {
                 translateY: -200,
                 display: "block",
                 opacity: 1,
-                duration: 0.6,
-                ease: "back.inOut",
+                duration: 0.65,
+                ease: "power4.inOut",
               },
               "-=0.3",
             );
@@ -80,11 +68,11 @@ export const useAnimateCard = (container: React.RefObject<null>) => {
       } else {
         // Jika Menutup Semua Kartu
         tl.current.to([aboutCard, contactCard], {
-          translateY: 300,
+          translateY: 200,
           display: "none",
           opacity: 0,
           duration: 0.8,
-          ease: "power4.in",
+          ease: "power4.inOut",
         });
       }
     },

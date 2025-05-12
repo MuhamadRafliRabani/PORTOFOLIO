@@ -1,7 +1,9 @@
 "use client";
+
+import React, { useCallback } from "react";
 import { useHandleTheme } from "@/app/hooks/use-handle-theme";
 import { themeOption } from "@/app/libs/Index";
-import React, { useCallback } from "react";
+import { themeOptionsButton } from "@/app/data/theme";
 
 const OptionColor = () => {
   const { setHandleTheme, theme } = useHandleTheme();
@@ -10,26 +12,30 @@ const OptionColor = () => {
     (newTheme: themeOption) => {
       setHandleTheme(newTheme);
     },
-    [theme],
+    [setHandleTheme],
   );
 
   return (
     <div
       id="option-color"
-      className="item bg-primary w-18 absolute -left-6 top-1/2 z-50 flex h-6 -translate-y-1/2 rotate-90 items-center justify-between rounded-t-sm px-4"
+      className="item absolute left-0 top-1/3 z-50 flex h-7 w-14 -translate-y-1/2 rotate-90 items-center justify-center space-x-2 rounded-t-md bg-[var(--bg-primary)] px-2"
     >
-      <button
-        className="inline-block size-2 cursor-pointer rounded-full bg-[#dedede] hover:scale-150"
-        onClick={() => handleClick("light")}
-      ></button>
-      <button
-        className="inline-block size-2 cursor-pointer rounded-full bg-[#161616] hover:scale-150"
-        onClick={() => handleClick("night")}
-      ></button>
-      <button
-        className="inline-block size-2 cursor-pointer rounded-full bg-[#d3e789] hover:scale-150"
-        onClick={() => handleClick("spring")}
-      ></button>
+      {themeOptionsButton.map(({ id, color }) => (
+        <React.Fragment key={id}>
+          <input
+            type="radio"
+            id={id}
+            name="theme"
+            className="hidden"
+            onChange={() => handleClick(id)}
+          />
+          <label
+            htmlFor={id}
+            style={{ backgroundColor: color }}
+            className={`radio ${theme === id ? "border-primary" : "border-none"}`}
+          />
+        </React.Fragment>
+      ))}
     </div>
   );
 };

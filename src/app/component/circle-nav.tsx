@@ -1,50 +1,85 @@
 "use client";
-import useHandleOpen from "../hooks/use-handle-open";
+
+import { useRef } from "react";
 import AnimateInformationCard from "./ui/animated-information-card";
 import { ScrambleText } from "./ui/scrumble-text";
+import useHandleOpen from "../hooks/use-handle-open";
+import { useHandleScrollToBottom } from "../hooks/useScrollByClick";
 
 const CircleNav = () => {
-  const { handleOpen } = useHandleOpen();
+  const { handleOpen, isOpen } = useHandleOpen();
+  const rotateRef = useRef<HTMLSpanElement>(null);
+
+  const rotateTo = (deg: number) => {
+    if (rotateRef.current) {
+      rotateRef.current.style.transform = `rotate(${deg}deg)`;
+      rotateRef.current.style.transition = "transform 0.5s ease-in-out";
+    }
+  };
+
+  const navItems = [
+    {
+      text: "INDEX",
+      position: "bottom-full left-1/2 -translate-x-1/2",
+      angle: 360,
+      action: () => window.location.reload(),
+    },
+    {
+      text: "WORK",
+      position: "right-full top-1/2 -translate-y-1/2",
+      angle: 270,
+      action: () => {
+        useHandleScrollToBottom();
+        if (isOpen.name === isOpen.name && isOpen.open) {
+          handleOpen(isOpen.name);
+        }
+      },
+    },
+    {
+      text: "ABOUT",
+      position: "left-full top-1/2 -translate-y-1/2",
+      angle: 90,
+      action: () => handleOpen("about-card"),
+    },
+    {
+      text: "CONTACT",
+      position: "left-1/2 top-full -translate-x-1/2",
+      angle: 180,
+      action: () => handleOpen("contact-card"),
+    },
+  ];
 
   return (
-    <div className="z-60 relative me-8 mt-10 h-auto w-auto">
+    <div className="z-60 relative -mb-8 me-4 inline-block">
+      {/* Lingkaran navigasi */}
       <span
         id="circle-nav"
-        className="inline-block size-28 rounded-full border border-white before:rounded-full"
-      ></span>
-      <ScrambleText
-        text="HOME"
-        overdrive={32}
-        tick={1}
-        speed={0.9}
-        className="z-70 absolute -top-6 left-1/2 -translate-x-1/2 cursor-pointer text-sm font-extralight tracking-wider"
-      />
+        className="border-primary relative m-3.5 flex size-28 items-center justify-center rounded-full border"
+      >
+        <span
+          ref={rotateRef}
+          className="size-10/11 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
+          {/* DOT */}
+          <span className="bg-primary absolute left-1/2 top-0 size-2 -translate-x-1/2 rounded-full" />
+        </span>
+      </span>
 
-      <ScrambleText
-        text="WORK"
-        overdrive={32}
-        tick={1}
-        speed={0.9}
-        className="z-70 absolute -left-8 top-1/2 -translate-y-1/2 cursor-pointer text-sm font-extralight tracking-wider"
-      />
-
-      <ScrambleText
-        text="ABOUT"
-        overdrive={32}
-        tick={1}
-        speed={0.9}
-        className="z-70 absolute -right-9 top-1/2 -translate-y-1/2 cursor-pointer text-sm font-extralight tracking-wider"
-        onClick={() => handleOpen("about-card")}
-      />
-
-      <ScrambleText
-        text="CONTACT"
-        overdrive={32}
-        tick={1}
-        speed={0.9}
-        className="z-70 absolute -bottom-6 left-1/2 -translate-x-1/2 cursor-pointer text-sm font-extralight tracking-wider"
-        onClick={() => handleOpen("contact-card")}
-      />
+      {/* ScrambleText Items */}
+      {navItems.map(({ text, position, angle, action }) => (
+        <ScrambleText
+          key={text}
+          text={text}
+          overdrive={32}
+          tick={1}
+          speed={0.9}
+          onClick={() => {
+            rotateTo(angle);
+            action();
+          }}
+          className={`absolute ${position} z-70 cursor-pointer text-sm font-extralight tracking-wider`}
+        />
+      ))}
 
       <AnimateInformationCard />
     </div>

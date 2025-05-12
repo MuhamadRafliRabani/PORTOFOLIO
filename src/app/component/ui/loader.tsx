@@ -39,7 +39,7 @@ export default function MoodSelector() {
 
   return (
     <div className="mood-selector z-999 fixed inset-0 flex min-h-screen w-screen items-center justify-center">
-      <div className="grid-rows-[1fr 50px] z-60 grid h-svh min-h-screen w-full place-content-center gap-5">
+      <div className="grid-rows-[1fr 50px] z-60 mt-15 grid h-svh min-h-screen w-screen place-content-center justify-items-center gap-5">
         {/* Mode Selection */}
         <div
           className={`relative transform-gpu transition-all duration-300 ease-in-out ${currentMood ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
@@ -49,130 +49,184 @@ export default function MoodSelector() {
             height="575"
             viewBox="0 0 575 575"
             fill="none"
-            className="size-65 border-secondary rounded-full border"
+            className="border-secondary size-65 mt-8 rounded-full border"
             xmlns="http://www.w3.org/2000/svg"
             ref={knobRef}
           >
+            <rect width="575" height="575" fill="#1E1E1E" />
             <g id="Clock_body">
+              <g id="Surface_top" filter="url(#filter0_d_0_1)"></g>
               <g id="Hours">
-                <g id="11">
-                  <rect
-                    width="8"
-                    height="50"
-                    transform="translate(186.045 100.527) rotate(149)"
-                    fill="#DEDEDE"
-                    className="stroke-secondary fill-secondary"
-                  />
-                </g>
                 <g id="10">
                   <rect
-                    width="8"
-                    height="50"
-                    transform="translate(106.751 175.265) rotate(119)"
+                    x="147.914"
+                    y="132.733"
+                    width="2"
+                    height="40"
+                    transform="rotate(134 147.914 132.733)"
+                    fill="#DEDEDE"
+                  />
+                  <rect
+                    x="147.914"
+                    y="132.733"
+                    width="2"
+                    height="40"
+                    transform="rotate(134 147.914 132.733)"
+                    stroke="#DEDEDE"
                     fill="#DEDEDE"
                     className="stroke-secondary fill-secondary"
                   />
                 </g>
                 <g id="9">
                   <rect
-                    width="8"
-                    height="50"
-                    transform="translate(76 278) rotate(90)"
+                    x="82"
+                    y="272"
+                    width="2"
+                    height="40"
+                    transform="rotate(90 82 272)"
                     fill="#DEDEDE"
-                    className="stroke-secondary fill-secondary"
                   />
-                </g>
-                <g id="8">
                   <rect
-                    width="8"
-                    height="50"
-                    transform="translate(100.527 385.677) rotate(59)"
+                    x="82"
+                    y="272"
+                    width="2"
+                    height="40"
+                    transform="rotate(90 82 272)"
+                    stroke="#DEDEDE"
                     fill="#DEDEDE"
                     className="stroke-secondary fill-secondary"
                   />
                 </g>
                 <g id="7">
                   <rect
-                    width="8"
-                    height="50"
-                    transform="translate(175.265 464.972) rotate(29)"
+                    x="135.733"
+                    y="419"
+                    width="2"
+                    height="40"
+                    transform="rotate(44 135.733 419)"
+                    fill="#DEDEDE"
+                  />
+                  <rect
+                    x="135.733"
+                    y="419"
+                    width="2"
+                    height="40"
+                    transform="rotate(44 135.733 419)"
+                    stroke="#DEDEDE"
                     fill="#DEDEDE"
                     className="stroke-secondary fill-secondary"
                   />
                 </g>
                 <g id="6&#231;&#130;&#185;">
+                  <rect x="283" y="479" width="5" height="40" fill="#DEDEDE" />
                   <rect
-                    width="8"
-                    height="50"
-                    transform="translate(278 496)"
+                    x="283"
+                    y="479"
+                    width="2"
+                    height="40"
+                    stroke="#DEDEDE"
                     fill="#DEDEDE"
                     className="stroke-secondary fill-secondary"
                   />
                 </g>
                 <g id="5">
                   <rect
-                    width="8"
-                    height="50"
-                    transform="translate(385.677 471.196) rotate(-31)"
+                    x="430"
+                    y="429.82"
+                    width="2"
+                    height="40"
+                    transform="rotate(-43 430 429.82)"
                     fill="#DEDEDE"
-                    className="stroke-secondary fill-secondary"
                   />
-                </g>
-                <g id="4">
                   <rect
-                    width="8"
-                    height="50"
-                    transform="translate(464.971 396.457) rotate(-61)"
+                    x="430"
+                    y="429.82"
+                    width="2"
+                    height="40"
+                    transform="rotate(-43 430 429.82)"
+                    stroke="#DEDEDE"
                     fill="#DEDEDE"
                     className="stroke-secondary fill-secondary"
                   />
                 </g>
                 <g id="3">
                   <rect
-                    width="8"
-                    height="50"
-                    transform="translate(496 294) rotate(-90)"
+                    x="489"
+                    y="282"
+                    width="2"
+                    height="40"
+                    transform="rotate(-90 489 282)"
+                    fill="#DEDEDE"
+                  />
+                  <rect
+                    x="489"
+                    y="282"
+                    width="2"
+                    height="40"
+                    transform="rotate(-90 489 282)"
+                    stroke="#DEDEDE"
                     fill="#DEDEDE"
                     className="stroke-secondary fill-secondary"
                   />
                 </g>
                 <g id="2">
                   <rect
-                    width="8"
-                    height="50"
-                    transform="translate(471.195 186.045) rotate(-121)"
+                    x="426.184"
+                    y="137.67"
+                    width="2"
+                    height="40"
+                    transform="rotate(-134 426.184 137.67)"
                     fill="#DEDEDE"
-                    className="stroke-secondary fill-secondary"
                   />
-                </g>
-                <g id="1">
                   <rect
-                    width="8"
-                    height="50"
-                    transform="translate(396.457 106.751) rotate(-151)"
+                    x="426.184"
+                    y="137.67"
+                    width="2"
+                    height="40"
+                    transform="rotate(-134 426.184 137.67)"
+                    stroke="#DEDEDE"
                     fill="#DEDEDE"
                     className="stroke-secondary fill-secondary"
                   />
                 </g>
                 <path
                   id="Polygon 1"
-                  d="M282.5 21L309.78 68.25H255.22L282.5 21Z"
+                  d="M303.321 69H268.679L286 38.999L303.321 69Z"
                   fill="#DEDEDE"
-                  className="fill-secondary"
+                  stroke="#DEDEDE"
+                  className="stroke-secondary fill-secondary"
                 />
+                <g id="arrow">
+                  <line
+                    id="Line 5"
+                    x1="286"
+                    y1="267"
+                    x2="286"
+                    y2="287"
+                    className="stroke-4 stroke-[#DEDEDE]"
+                  />
+                  <line
+                    id="Line 6"
+                    x1="296"
+                    y1="277"
+                    x2="276"
+                    y2="277"
+                    className="stroke-4 stroke-[#DEDEDE]"
+                  />
+                </g>
               </g>
             </g>
             <defs>
               <filter
-                id="filter0_d_2_335"
+                id="filter0_d_0_1"
                 x="0.344866"
                 y="0.344866"
                 width="573.791"
                 height="573.791"
                 filterUnits="userSpaceOnUse"
-                color-interpolation-filters="sRGB"
+                colorInterpolationFilters="sRGB"
               >
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
                 <feColorMatrix
                   in="SourceAlpha"
                   type="matrix"
@@ -189,21 +243,22 @@ export default function MoodSelector() {
                 <feBlend
                   mode="normal"
                   in2="BackgroundImageFix"
-                  result="effect1_dropShadow_2_335"
+                  result="effect1_dropShadow_0_1"
                 />
                 <feBlend
                   mode="normal"
                   in="SourceGraphic"
-                  in2="effect1_dropShadow_2_335"
+                  in2="effect1_dropShadow_0_1"
                   result="shape"
                 />
               </filter>
             </defs>
           </svg>
+
           {DataTheme.map((mode, i) => (
             <button
               key={i}
-              className={`${mode.className} min-w-5 cursor-pointer uppercase tracking-wide transition-opacity ${
+              className={`${mode.className} h-fit w-fit cursor-pointer uppercase tracking-wider transition-opacity ${
                 theme === mode?.name ? "opacity-100" : "opacity-70"
               }`}
               onClick={() => handleClick(mode.name)}

@@ -9,42 +9,44 @@ import { useHomeAnimations } from "./hooks/use-home-animate";
 import CircleLoader from "./component/load";
 import Background from "./component/ui/background";
 import Hoc from "./hoc/Hoc";
+import Globe from "./component/ui/globe";
 
 function Home() {
   const appRef = useRef<HTMLDivElement>(null);
+  const projectRef = useRef<HTMLDivElement>(null);
 
-  useHomeAnimations(appRef);
+  useHomeAnimations(appRef, projectRef);
 
   return (
-    <div ref={appRef} className="max-h-screen min-h-screen overflow-hidden">
-      <section className="max-w-320 bg-background relative m-auto my-5 grid h-[93svh] max-h-screen grid-cols-1 grid-rows-2 items-center gap-2 overflow-hidden rounded-2xl px-8">
-        <div className="item mt-auto px-4">
+    <section
+      ref={appRef}
+      className="max-w-screen max-h-screen w-[98.5vw] overflow-hidden"
+    >
+      <div className="max-w-320 relative m-auto my-5 grid h-[93svh] w-full grid-cols-1 grid-rows-2 items-end">
+        <div className="item inline-block px-4 md:mt-40">
           <ScrambleText
             text="Hey there! Ready to craft an amazing digital experience with me? ✨"
-            className="block max-w-60 overflow-hidden text-wrap text-xl uppercase tracking-wider"
+            className="overflWow-hidden block max-w-60 text-wrap text-xl uppercase tracking-wider"
             tick={1}
           />
         </div>
 
-        <div className="project z-100 absolute -right-0 -top-2.5 w-11/12 overflow-x-hidden">
-          <PortofiloCard />
-        </div>
+        <PortofiloCard projectRef={projectRef} />
 
-        {/* title */}
-        <div className="item flex h-auto w-full items-center justify-between">
+        <div className="item w-20/21 mx-auto my-5 flex h-auto items-center justify-between">
           <LinkCardWork />
           <CircleNav />
         </div>
 
-        <OptionColor />
-
-        {/* <div className="fixed inset-10 -z-10">
-          <Background />
-        </div> */}
-      </section>
+        <div className="size-25 -z-9 absolute -bottom-0 left-8 right-0 top-0 h-full w-full">
+          <Globe />
+        </div>
+        <Background />
+      </div>
+      <OptionColor />
 
       {/* <CircleLoader /> */}
-    </div>
+    </section>
   );
 }
 

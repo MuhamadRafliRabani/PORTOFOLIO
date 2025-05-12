@@ -28,46 +28,84 @@
   --border-primary: #f3f3f3;
   --color-secondary: #dbdbdb;
   --bg-secondary: #dbdbdb;
+  --bg-background: #161616;
   --border-secondary: #dbdbdb;
+  --color-text: #f3f3f3;
+  --stroke-muted: #f3f3f3;
+  --fill-muted: #f3f3f3;
 }
 
 [data-theme="light"] {
   /* Tema Light */
-  --color-primary: #f3f3f3;
-  --bg-primary: #f3f3f3;
-  --border-primary: #f3f3f3;
-  --color-background: #dbdbdb;
-  --bg-background: #dbdbdb;
-  --border-background: #dbdbdb;
-  --color-secondary: #282828;
-  --bg-secondary: #282828;
-  --border-secondary: #282828;
+  --color-text: #161616;
+  --stroke-muted: #f3f3f3;
+  --fill-muted: #dedede;
+  --bg-primary: #fefefe;
+  --border-primary: #161616;
+  --color-background: #dedede;
+  --bg-background: #dedede;
+  --border-background: #161616;
+  --bg-secondary: #cecfc6;
+  --border-secondary: #161616;
+  --gradient-stop-1: #000000;
+  --gradient-stop-2: #4a40;
+  --gradient-stop-3: #16161616;
+  --gradient-black-hole-1: #dedede;
+  --gradient-black-hole-2: #000000;
 }
 
 [data-theme="night"] {
   /* Tema Dark */
-  --color-primary: #282828;
+  --color-text: #dbdbdb;
+  --stroke-muted: #bfa8ff;
+  --fill-muted: #bfa8ff;
   --bg-primary: #282828;
   --border-primary: #282828;
   --color-background: #161616;
   --bg-background: #161616;
+  --fill-background: #161616;
   --border-background: #161616;
-  --color-secondary: #dbdbdb;
   --bg-secondary: #dbdbdb;
   --border-secondary: #dbdbdb;
+  --gradient-stop-1: #aaaaff;
+  --gradient-stop-2: #4b4bdf;
+  --gradient-stop-3: #2a2adb;
+  --gradient-black-hole-1: #161616;
+  --gradient-black-hole-2: #aaaaff;
 }
 
 [data-theme="spring"] {
   /* Tema Spring */
-  --color-primary: #748420;
+  --color-text: #748420;
+  --stroke-muted: #748420;
+  --fill-muted: #748420;
   --bg-primary: #748420;
   --border-primary: #748420;
   --color-background: #d3e789;
   --bg-background: #d3e789;
+  --fill-background: #d3e789;
   --border-background: #d3e789;
-  --color-secondary: #748420;
   --bg-secondary: #748420;
   --border-secondary: #748420;
+  --gradient-stop-1: #fcffc1;
+  --gradient-stop-2: #ffe893;
+  --gradient-stop-3: #fff9bf;
+  --gradient-black-hole-1: #d3e789;
+  --gradient-black-hole-2: #f4ffc3;
+}
+
+.gradient-stop-1 {
+  stop-color: var(--gradient-stop-1);
+}
+.gradient-stop-2 {
+  stop-color: var(--gradient-stop-2);
+}
+.gradient-stop-3 {
+  stop-color: var(--gradient-stop-3);
+}
+
+.radio {
+  @apply inline-block size-2 cursor-pointer rounded-full border;
 }
 
 @font-face {
@@ -87,8 +125,16 @@
   font-style: normal;
 }
 
+/* * {
+  border: 1px solid red;
+} */
+
 .GT-america {
   font-family: GT-America, sans-serif;
+}
+
+.embla__container {
+  cursor: grab;
 }
 
 body {
@@ -99,19 +145,15 @@ body {
 #option-color::before {
   content: "";
   z-index: -1;
-  /* background-color: blue; */
-  background-color: #161616;
-  border-radius: 200px 200px 30px 40px;
-  -moz-border-radius: 200px 200px 200px 33px;
-  -webkit-border-radius: 200px 200px 200px 33px;
-  width: 100%;
-  height: 100%;
-  bottom: 3.5;
-  transform: rotate(-90deg);
-  width: 12px;
-  height: 15px;
-  left: -15;
+  background-color: blue;
+  /* background-color: #161616; */
+  width: 20px;
+  height: 20px;
+  bottom: 1.4px;
+  rotate: -90deg;
+  left: 99%;
   position: absolute;
+  border-top-left-radius: 0.5rem;
 }
 
 /* #option-color::after {
@@ -130,20 +172,6 @@ body {
   right: -15;
   position: absolute;
 } */
-
-#circle-nav::before {
-  content: "";
-  display: inline-block;
-  background-color: #dbdbdb;
-  position: absolute;
-  border-radius: 50%;
-  width: 6px;
-  height: 6px;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-}
 
 .bg-dots {
   /* Add your background pattern here */
@@ -186,4 +214,42 @@ body {
 
 .background-svg {
   background-color: var(--bg-background);
+}
+
+@keyframes rotateGlobe {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.rotate-animation {
+  animation: rotateGlobe 20s linear infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.card-info {
+  background-color: var(--bg-secondary);
+  color: #161616;
+}
+
+/* Override untuk tema night */
+[data-theme="night"] .card-info {
+  background-color: var(--bg-primary);
+  color: var(--color-background);
+}
+
+/* Override untuk tema night */
+[data-theme="night"] .card-info {
+  background-color: var(--bg-background);
+  color: var(--color-text);
+}
+
+/* Override untuk tema spring */
+[data-theme="spring"] .card-info {
+  background-color: var(--color-text);
+  color: var(--bg-background);
 }

@@ -8,6 +8,7 @@ export const ScrambleText = ({
   speed = 0.86,
   tick = 3,
   overdrive = 9,
+  step = 1.3,
   ...props
 }: ScrambleTextProps) => {
   const { ref, replay } = useScramble({
@@ -15,6 +16,7 @@ export const ScrambleText = ({
     speed: speed,
     tick: tick,
     overflow: true,
+    step: step,
     overdrive: overdrive,
     scramble: 2,
   });

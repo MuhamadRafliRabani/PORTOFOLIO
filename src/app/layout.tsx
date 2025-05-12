@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./component/navbar";
 import { useAtom } from "jotai";
 import { mainTheme } from "./hooks/context";
+import FloatingTooltip from "./component/ui/tooltips";
 
 export default function RootLayout({
   children,
@@ -13,10 +14,14 @@ export default function RootLayout({
   const [theme] = useAtom(mainTheme);
 
   return (
-    <html lang="en" data-theme={theme} className="scroll-smooth">
-      <body className="bg-primary text-secondary selection:bg-background selection:text-gray-950">
+    <html lang="en" className="scroll-smooth">
+      <body
+        data-theme={theme}
+        className="bg-background text-text selection:bg-background selection:text-gray-950"
+      >
         <Navbar />
         {children}
+        {/* <FloatingTooltip /> */}
       </body>
     </html>
   );

@@ -20,6 +20,27 @@ export const portpfolio: ProjectInfo[] = [
       name: "ANFLIX.VERCEL.APP",
       link: "http://anflix.vercel.app",
     },
+    image: "/image/anflix-1.webp",
+  },
+  {
+    description: [
+      {
+        name: "SERVICE",
+        value: "UP.RAILWAY",
+      },
+      {
+        name: "DEVELOPMENT",
+        value: "MUHAMAD RAFLI RABANI",
+      },
+      {
+        name: "TACKSTACK",
+        value: "LARAVEL 12",
+      },
+    ],
+    website: {
+      name: "DASHBOARD",
+      link: "https://ecommerce-and-dashboard-production.up.railway.app/login",
+    },
     image: "/space.png",
   },
   {

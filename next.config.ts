@@ -8,6 +8,11 @@ const nextConfig = {
         hostname: "placehold.co",
         pathname: "/**", // Mengizinkan semua gambar dari placehold.co
       },
+      {
+        protocol: "https",
+        hostname: "i.postimg.cc",
+        pathname: "/**", // Mengizinkan semua gambar dari placehold.co
+      },
     ],
   },
 };
