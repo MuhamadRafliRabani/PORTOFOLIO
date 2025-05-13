@@ -23,7 +23,7 @@ function Home() {
       className="max-w-screen max-h-screen w-[98.5vw] overflow-hidden"
     >
       <div className="max-w-320 relative m-auto my-5 grid h-[93svh] w-full grid-cols-1 grid-rows-2 items-end">
-        <div className="item inline-block px-4 md:mt-40">
+        <div className="item md:translate-y-25 translate-y-45 ms-10 inline-block w-fit px-4">
           <ScrambleText
             text="Hey there! Ready to craft an amazing digital experience with me? ✨"
             className="overflWow-hidden block max-w-60 text-wrap text-xl uppercase tracking-wider"
@@ -38,7 +38,7 @@ function Home() {
           <CircleNav />
         </div>
 
-        <div className="size-25 -z-9 absolute -bottom-0 left-8 right-0 top-0 h-full w-full">
+        <div className="size-25 -z-9 absolute -bottom-0 left-1 right-0 top-0 h-full w-full md:left-8">
           <Globe />
         </div>
         <Background />

@@ -8,7 +8,7 @@ export const portpfolio: ProjectInfo[] = [
         value: "VERCEL",
       },
       {
-        name: "DEVELOPMENT",
+        name: "DEVELOPMENT BY",
         value: "MUHAMAD RAFLI RABANI",
       },
       {
@@ -29,7 +29,7 @@ export const portpfolio: ProjectInfo[] = [
         value: "UP.RAILWAY",
       },
       {
-        name: "DEVELOPMENT",
+        name: "DEVELOPMENT BY",
         value: "MUHAMAD RAFLI RABANI",
       },
       {
@@ -50,7 +50,7 @@ export const portpfolio: ProjectInfo[] = [
         value: "UP.RAILWAY",
       },
       {
-        name: "DEVELOPMENT",
+        name: "DEVELOPMENT BY",
         value: "MUHAMAD RAFLI RABANI",
       },
       {

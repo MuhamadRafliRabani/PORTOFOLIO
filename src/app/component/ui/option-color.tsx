@@ -18,7 +18,7 @@ const OptionColor = () => {
   return (
     <div
       id="option-color"
-      className="item absolute left-0 top-1/3 z-50 flex h-7 w-14 -translate-y-1/2 rotate-90 items-center justify-center space-x-2 rounded-t-md bg-[var(--bg-primary)] px-2"
+      className="item absolute -left-0.5 top-1/3 z-50 flex h-7 w-14 -translate-y-1/2 rotate-90 items-center justify-center space-x-2 rounded-t-md bg-[var(--bg-primary)] px-2 md:left-0"
     >
       {themeOptionsButton.map(({ id, color }) => (
         <React.Fragment key={id}>

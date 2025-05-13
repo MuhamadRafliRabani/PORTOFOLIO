@@ -1,7 +1,7 @@
 import React from "react";
 import CardLayout from "./card-layout";
 import ContactMe from "./ui/contact-me";
-import { ShoppingBag } from "lucide-react";
+import { Instagram, Linkedin, ShoppingBag, Youtube } from "lucide-react";
 import { ScrambleText } from "./ui/scrumble-text";
 
 const ContactCard = () => {
@@ -13,15 +13,15 @@ const ContactCard = () => {
 
         <div className="flex flex-wrap items-center justify-center gap-2">
           <div className="border-second flex grow basis-1/3 items-center space-x-2 rounded-md border p-3 text-xs">
-            <ShoppingBag className="size-3" />
+            <Linkedin className="size-3" />
             <ScrambleText text="LINKEDIN" className="mx-auto" />
           </div>
           <div className="border-second flex grow basis-1/3 items-center space-x-2 rounded-md border p-3 text-xs">
-            <ShoppingBag className="size-3" />
+            <Instagram className="size-3" />
             <ScrambleText text="INSTAGRAM" className="mx-auto" />
           </div>
           <div className="border-second flex basis-full items-center space-x-2 rounded-md border p-3 text-xs">
-            <ShoppingBag className="size-3" />
+            <Youtube className="size-4" />
 
             <ScrambleText text="YOUTUBE" className="mx-auto" />
           </div>

@@ -3,8 +3,8 @@ import { ScrambleText } from "./ui/scrumble-text";
 
 const Navbar = () => {
   return (
-    <div className="navbar fixed inset-x-0 top-0 z-50 flex min-h-14 items-end justify-between px-14">
-      <div className="md:min-w-59 flex items-end justify-between">
+    <div className="navbar fixed inset-x-0 top-0 z-50 flex min-h-14 items-end justify-between px-6 md:px-14">
+      <div className="md:min-w-59 flex items-end justify-between gap-2">
         <AlignStartHorizontal className="size-8 -rotate-90 duration-300" />
 
         <ScrambleText
@@ -18,7 +18,7 @@ const Navbar = () => {
 
       <ScrambleText
         text="REACT DEVELOVER / LARAVEL DEVELOPER"
-        className="md:-ms-130 -me-24 inline-block max-w-[140px] font-extralight tracking-widest md:-mb-3 md:text-sm/4"
+        className="md:-ms-130 -me-24 hidden max-w-[140px] font-extralight tracking-widest md:-mb-3 md:inline-block md:text-sm/4"
         speed={1}
         tick={1}
       />

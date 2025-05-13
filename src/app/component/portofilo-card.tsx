@@ -13,8 +13,8 @@ type portofiloCard = {
 };
 const PortofiloCard = ({ projectRef }: portofiloCard) => {
   const [closeVisible, setCloseVisible] = useState<boolean>(false);
-  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
-  const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
+  const [prevBtnDisabled, setPrevBtnDisabled] = useState<boolean>(true);
+  const [nextBtnDisabled, setNextBtnDisabled] = useState<boolean>(true);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
   });
@@ -40,21 +40,21 @@ const PortofiloCard = ({ projectRef }: portofiloCard) => {
     setCloseVisible(true);
     if (!emblaApi) return;
 
-    onSelect(); // update status tombol saat init
-    emblaApi.on("select", onSelect); // update saat scroll berubah
+    onSelect();
+    emblaApi.on("select", onSelect);
   }, [emblaApi, onSelect]);
 
   return (
     <div
       ref={projectRef}
-      className="w-320 relative z-50 translate-y-[43vh] bg-[var(--bg-background)]"
+      className="md:w-320 max-h-145 relative z-50 w-full translate-y-[20vh] px-4 md:max-h-screen md:translate-y-[43vh] md:bg-[var(--bg-background)] md:px-0"
     >
       <div className="embla__viewport w-full overflow-hidden" ref={emblaRef}>
         <div className="embla__container flex h-full min-h-[90vh] flex-nowrap items-center justify-start gap-2 text-xs font-medium">
           {portpfolio.map((data, index) => (
             <div
               key={index}
-              className="embla__slide h-full flex-[0_0_50%] overflow-hidden rounded-xl bg-[var(--bg-primary)] text-white"
+              className="embla__slide h-full flex-[0_0_100%] overflow-hidden rounded-xl bg-[var(--bg-primary)] text-white md:flex-[0_0_50%]"
             >
               <CardContent data={data} />
             </div>
@@ -63,7 +63,7 @@ const PortofiloCard = ({ projectRef }: portofiloCard) => {
       </div>
 
       {/* Controls (harus di luar .viewport) */}
-      <div className="z-70 absolute inset-x-0 bottom-0 flex w-full items-center justify-between text-white">
+      <div className="z-70 absolute inset-x-0 bottom-0 flex w-full items-center justify-between px-6 text-white md:px-0">
         <div className="space-x-4">
           <button
             onClick={onPrevButtonClick}
@@ -75,7 +75,7 @@ const PortofiloCard = ({ projectRef }: portofiloCard) => {
           </button>
           <button
             onClick={onNextButtonClick}
-            style={nextBtnDisabled ? { opacity: 0 } : { opacity: 1 }}
+            style={nextBtnDisabled ? { opacity: 0.1 } : { opacity: 1 }}
             disabled={nextBtnDisabled}
             className="rounded-lg border border-white"
           >

@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ELEMENTS_TO_FADE = ["#black-hole", ".globe", ".navbar", ".item"];
+const ELEMENTS_TO_FADE = [".navbar", ".item"];
 
 export const useHomeAnimations = (
   appRef: React.RefObject<HTMLDivElement | null>,
@@ -34,6 +34,27 @@ export const useHomeAnimations = (
         duration: 0.5,
         ease: "power3.out",
         stagger: 0.05,
+      },
+      0,
+    );
+
+    timeline.to(
+      "#black-hole",
+      {
+        opacity: 0.6,
+        scale: 0.8,
+        ease: "power2.inOut",
+      },
+      0,
+    );
+
+    timeline.to(
+      ".globe",
+      {
+        x: -80,
+        y: -25,
+        opacity: 0.6,
+        ease: "power2.inOut",
       },
       0,
     );

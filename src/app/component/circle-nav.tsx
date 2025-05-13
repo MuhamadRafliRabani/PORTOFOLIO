@@ -20,13 +20,13 @@ const CircleNav = () => {
   const navItems = [
     {
       text: "INDEX",
-      position: "bottom-full left-1/2 -translate-x-1/2",
+      position: "bottom-[95%] md:bottom-full left-1/2 -translate-x-1/2",
       angle: 360,
       action: () => window.location.reload(),
     },
     {
       text: "WORK",
-      position: "right-full top-1/2 -translate-y-1/2",
+      position: "right-[95%] md:right-full top-1/2 -translate-y-1/2",
       angle: 270,
       action: () => {
         useHandleScrollToBottom();
@@ -37,24 +37,24 @@ const CircleNav = () => {
     },
     {
       text: "ABOUT",
-      position: "left-full top-1/2 -translate-y-1/2",
+      position: "left-[95%]  md:left-full top-1/2 -translate-y-1/2",
       angle: 90,
       action: () => handleOpen("about-card"),
     },
     {
       text: "CONTACT",
-      position: "left-1/2 top-full -translate-x-1/2",
+      position: "top-[95%] left-1/2 top-full -translate-x-1/2",
       angle: 180,
       action: () => handleOpen("contact-card"),
     },
   ];
 
   return (
-    <div className="z-60 relative -mb-8 me-4 inline-block">
+    <div className="z-60 relative -mb-8 me-7 inline-block md:me-4">
       {/* Lingkaran navigasi */}
       <span
         id="circle-nav"
-        className="border-primary relative m-3.5 flex size-28 items-center justify-center rounded-full border"
+        className="border-primary size-23 relative m-3.5 flex items-center justify-center rounded-full border md:size-28"
       >
         <span
           ref={rotateRef}

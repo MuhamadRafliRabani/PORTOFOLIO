@@ -5,8 +5,8 @@ const AboutCard = () => {
   return (
     <CardLayout id="about-card">
       <Image
-        src="/profil.jpg"
-        className="absolute -left-5 -top-5 z-40 size-16 rounded-full object-cover object-top"
+        src="/image/profil.png"
+        className="absolute -left-5 -top-5 z-40 size-16 rounded-full border border-white object-cover object-top"
         width={64}
         height={64}
         alt="PROFIL IMAGE"

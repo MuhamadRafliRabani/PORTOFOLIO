@@ -18,20 +18,22 @@ const RecentWork = () => {
   const hideTooltip = () => setVisible(false);
 
   return (
-    <div className="space-y-2">
+    <div
+      onClick={() => useHandleScrollToBottom()}
+      className="ms-2 cursor-pointer space-y-2 md:ms-0"
+    >
       <ScrambleText
         text="RECENT WORK"
-        onClick={() => useHandleScrollToBottom()}
         onMouseEnter={() => showTooltip("Scroll to see more")}
         onMouseLeave={hideTooltip}
-        className="block text-sm font-extralight tracking-widest"
+        className="block font-extralight tracking-widest md:text-sm"
       />
       <Image
         src="/image/anflix-1.webp"
         width={300}
         height={200}
         alt="project"
-        className="h-50 w-60 rounded-xl border border-white object-cover object-left"
+        className="md:h-50 h-30 w-37 rounded-xl border border-white object-cover object-left md:w-60"
         onMouseEnter={() => showTooltip("Preview Project")}
         onMouseLeave={hideTooltip}
       />

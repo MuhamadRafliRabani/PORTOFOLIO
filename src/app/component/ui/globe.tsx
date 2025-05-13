@@ -137,7 +137,7 @@ const GlobeModel = (props: Group) => {
 
 // Globe.tsx
 const Globe = () => (
-  <Canvas className="globe -translate-y-15 max-h-115 h-full">
+  <Canvas className="globe max-h-115 h-full -translate-y-5 md:-translate-y-12">
     <ambientLight intensity={0} />
     <directionalLight position={[10, 10, 5]} intensity={0} />
     <pointLight position={[10, 10, -10]} intensity={0} />
