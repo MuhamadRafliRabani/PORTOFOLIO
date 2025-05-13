@@ -5,7 +5,7 @@ const Background = () => {
   const { theme } = useHandleTheme();
 
   return (
-    <div className="fixed inset-x-3 inset-y-2 right-1 -z-10 overflow-hidden rounded-xl md:inset-4 md:right-0">
+    <div className="fixed inset-x-3 inset-y-2 right-1 -z-10 overflow-hidden rounded-xl md:inset-4">
       <svg
         width="2567"
         height="1028"
