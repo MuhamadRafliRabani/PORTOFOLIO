@@ -5,14 +5,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ELEMENTS_TO_FADE = [".navbar", ".item"];
-
 export const useHomeAnimations = (
   appRef: React.RefObject<HTMLDivElement | null>,
   projectRef: React.RefObject<HTMLDivElement | null>,
 ) => {
   useEffect(() => {
     if (!appRef.current || !projectRef?.current) return;
+    const ELEMENTS_TO_FADE = gsap.utils.toArray(".item");
 
     const timeline = gsap.timeline({
       scrollTrigger: {
@@ -29,11 +28,14 @@ export const useHomeAnimations = (
     timeline.to(
       ELEMENTS_TO_FADE,
       {
-        scale: 0.9,
+        scale: 0.95,
         opacity: 0,
         duration: 0.5,
         ease: "power3.out",
-        stagger: 0.05,
+        stagger: {
+          each: 0.2,
+          from: "center",
+        },
       },
       0,
     );
@@ -60,19 +62,15 @@ export const useHomeAnimations = (
     );
 
     // Project slide-in dari kiri
-    timeline.fromTo(
+    timeline.to(
       projectRef.current,
       {
-        x: 1500,
-        opacity: 0,
-      },
-      {
-        x: 0,
+        x: -10,
         opacity: 1,
         duration: 1,
         ease: "power2.out",
       },
-      0,
+      0.3,
     );
 
     return () => {

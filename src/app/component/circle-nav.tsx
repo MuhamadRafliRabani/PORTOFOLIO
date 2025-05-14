@@ -50,7 +50,10 @@ const CircleNav = () => {
   ];
 
   return (
-    <div className="z-60 relative -mb-8 me-7 inline-block md:me-4">
+    <div
+      style={{ transform: `translateY(300px)`, opacity: 0 }}
+      className="item z-60 relative -mb-8 me-7 inline-block md:me-4"
+    >
       {/* Lingkaran navigasi */}
       <span
         id="circle-nav"

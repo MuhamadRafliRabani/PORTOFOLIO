@@ -20,7 +20,8 @@ const RecentWork = () => {
   return (
     <div
       onClick={() => useHandleScrollToBottom()}
-      className="ms-2 cursor-pointer space-y-2 md:ms-0"
+      style={{ transform: `translateY(300px)`, opacity: 0 }}
+      className="item ms-2 cursor-pointer space-y-2 md:ms-0"
     >
       <ScrambleText
         text="RECENT WORK"

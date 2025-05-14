@@ -198,10 +198,10 @@ body {
   );
 }
 
-.mood-selector {
+.bar {
   background-color: var(--bg-background);
+  @apply h-screen w-[10vw] origin-top;
 }
-
 /* border-top-left-radius: .5rem;
     border-bottom-left-radius: 0; */
 

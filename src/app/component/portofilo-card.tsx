@@ -13,41 +13,33 @@ type portofiloCard = {
 };
 const PortofiloCard = ({ projectRef }: portofiloCard) => {
   const [closeVisible, setCloseVisible] = useState<boolean>(false);
-  const [prevBtnDisabled, setPrevBtnDisabled] = useState<boolean>(true);
-  const [nextBtnDisabled, setNextBtnDisabled] = useState<boolean>(true);
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
+    loop: true,
   });
 
-  const onPrevButtonClick = useCallback(() => {
+  const handlePrevSlide = useCallback(() => {
     if (!emblaApi) return;
-    emblaApi.scrollPrev();
+
+    emblaApi?.scrollPrev();
   }, [emblaApi]);
-
-  const onNextButtonClick = useCallback(() => {
+  const handleNextSlide = useCallback(() => {
     if (!emblaApi) return;
-    emblaApi.scrollNext();
+
+    emblaApi?.scrollNext();
   }, [emblaApi]);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-
-    setPrevBtnDisabled(!emblaApi.canScrollPrev());
-    setNextBtnDisabled(!emblaApi.canScrollNext());
-  }, []);
 
   useEffect(() => {
-    setCloseVisible(true);
     if (!emblaApi) return;
 
-    onSelect();
-    emblaApi.on("select", onSelect);
-  }, [emblaApi, onSelect]);
+    setCloseVisible(true);
+  }, [emblaApi]);
 
   return (
     <div
       ref={projectRef}
-      className="md:w-320 max-h-145 relative z-50 w-full translate-y-[20vh] px-4 md:max-h-screen md:translate-y-[43vh] md:bg-[var(--bg-background)] md:px-0"
+      style={{ transform: "translateX(1500px)", opacity: 0 }}
+      className="md:w-325 max-h-145 relative z-50 w-fit translate-y-[20vh] px-4 md:max-h-screen md:translate-y-[43vh] md:bg-[var(--bg-background)] md:px-0"
     >
       <div className="embla__viewport w-full overflow-hidden" ref={emblaRef}>
         <div className="embla__container flex h-full min-h-[90vh] flex-nowrap items-center justify-start gap-2 text-xs font-medium">
@@ -66,17 +58,13 @@ const PortofiloCard = ({ projectRef }: portofiloCard) => {
       <div className="z-70 absolute inset-x-0 bottom-0 flex w-full items-center justify-between px-6 text-white md:px-0">
         <div className="space-x-4">
           <button
-            onClick={onPrevButtonClick}
-            style={prevBtnDisabled ? { opacity: 0.1 } : { opacity: 1 }}
-            disabled={prevBtnDisabled}
+            onClick={handlePrevSlide}
             className="rounded-lg border border-white"
           >
             <ChevronLeft className="size-10 p-2" />
           </button>
           <button
-            onClick={onNextButtonClick}
-            style={nextBtnDisabled ? { opacity: 0.1 } : { opacity: 1 }}
-            disabled={nextBtnDisabled}
+            onClick={handleNextSlide}
             className="rounded-lg border border-white"
           >
             <ChevronRight className="size-10 p-2" />

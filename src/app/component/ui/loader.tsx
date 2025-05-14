@@ -7,11 +7,14 @@ import { DataTheme } from "@/app/data/theme";
 import { useHandleTheme } from "@/app/hooks/use-handle-theme";
 import { useHandleMood } from "@/app/hooks/use-handle-mood";
 import { themeOption } from "@/app/libs/Index";
+import { useReveleAnimate } from "@/app/hooks/use-revele-animate";
 
 export default function MoodSelector() {
   const { theme, setHandleTheme } = useHandleTheme();
   const { handleMoodChange, mood } = useHandleMood();
   const knobRef = useRef<SVGSVGElement>(null);
+  const circleRef = useRef<SVGCircleElement | null>(null);
+  useReveleAnimate(circleRef);
 
   const dataTheme = useMemo(
     () => DataTheme.find((item) => item.name === theme),
@@ -38,8 +41,8 @@ export default function MoodSelector() {
   const currentMood = mood === "false";
 
   return (
-    <div className="mood-selector z-999 fixed inset-0 flex min-h-screen w-screen items-center justify-center">
-      <div className="grid-rows-[1fr 50px] z-60 mt-15 grid h-svh min-h-screen w-screen place-content-center justify-items-center gap-5">
+    <div className="mood-selector z-9999 fixed inset-0 flex min-h-screen w-screen items-center justify-center">
+      <div className="grid-rows-[1fr 50px] z-60 mt-15 absolute inset-0 grid h-svh min-h-screen w-screen place-content-center justify-items-center gap-5">
         {/* Mode Selection */}
         <div
           className={`relative transform-gpu transition-all duration-300 ease-in-out ${currentMood ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
@@ -49,11 +52,22 @@ export default function MoodSelector() {
             height="575"
             viewBox="0 0 575 575"
             fill="none"
-            className="border-secondary size-65 mt-8 rounded-full border"
+            className="size-65 mt-8 rounded-full"
             xmlns="http://www.w3.org/2000/svg"
             ref={knobRef}
           >
-            <rect width="575" height="575" fill="#1E1E1E" />
+            <rect width="575" height="575" />
+            <circle
+              cx="287.5"
+              cy="287.5"
+              r="285.2"
+              stroke="#fefefe"
+              strokeWidth="4"
+              strokeDashoffset={0}
+              fill="none"
+              strokeLinecap="round"
+              ref={circleRef}
+            />
             <g id="Clock_body">
               <g id="Surface_top" filter="url(#filter0_d_0_1)"></g>
               <g id="Hours">
@@ -64,7 +78,6 @@ export default function MoodSelector() {
                     width="2"
                     height="40"
                     transform="rotate(134 147.914 132.733)"
-                    fill="#DEDEDE"
                   />
                   <rect
                     x="147.914"
@@ -72,9 +85,8 @@ export default function MoodSelector() {
                     width="2"
                     height="40"
                     transform="rotate(134 147.914 132.733)"
-                    stroke="#DEDEDE"
-                    fill="#DEDEDE"
-                    className="stroke-secondary fill-secondary"
+                    stroke="var(--bg-secondary)"
+                    strokeWidth="5"
                   />
                 </g>
                 <g id="9">
@@ -84,7 +96,6 @@ export default function MoodSelector() {
                     width="2"
                     height="40"
                     transform="rotate(90 82 272)"
-                    fill="#DEDEDE"
                   />
                   <rect
                     x="82"
@@ -92,9 +103,8 @@ export default function MoodSelector() {
                     width="2"
                     height="40"
                     transform="rotate(90 82 272)"
-                    stroke="#DEDEDE"
-                    fill="#DEDEDE"
-                    className="stroke-secondary fill-secondary"
+                    stroke="var(--bg-secondary)"
+                    strokeWidth="5"
                   />
                 </g>
                 <g id="7">
@@ -104,7 +114,6 @@ export default function MoodSelector() {
                     width="2"
                     height="40"
                     transform="rotate(44 135.733 419)"
-                    fill="#DEDEDE"
                   />
                   <rect
                     x="135.733"
@@ -112,21 +121,19 @@ export default function MoodSelector() {
                     width="2"
                     height="40"
                     transform="rotate(44 135.733 419)"
-                    stroke="#DEDEDE"
-                    fill="#DEDEDE"
-                    className="stroke-secondary fill-secondary"
+                    stroke="var(--bg-secondary)"
+                    strokeWidth="5"
                   />
                 </g>
                 <g id="6&#231;&#130;&#185;">
-                  <rect x="283" y="479" width="5" height="40" fill="#DEDEDE" />
+                  <rect x="283" y="479" width="5" height="40" />
                   <rect
                     x="283"
                     y="479"
                     width="2"
                     height="40"
-                    stroke="#DEDEDE"
-                    fill="#DEDEDE"
-                    className="stroke-secondary fill-secondary"
+                    stroke="var(--bg-secondary)"
+                    strokeWidth="5"
                   />
                 </g>
                 <g id="5">
@@ -136,7 +143,6 @@ export default function MoodSelector() {
                     width="2"
                     height="40"
                     transform="rotate(-43 430 429.82)"
-                    fill="#DEDEDE"
                   />
                   <rect
                     x="430"
@@ -144,9 +150,8 @@ export default function MoodSelector() {
                     width="2"
                     height="40"
                     transform="rotate(-43 430 429.82)"
-                    stroke="#DEDEDE"
-                    fill="#DEDEDE"
-                    className="stroke-secondary fill-secondary"
+                    stroke="var(--bg-secondary)"
+                    strokeWidth="5"
                   />
                 </g>
                 <g id="3">
@@ -156,7 +161,6 @@ export default function MoodSelector() {
                     width="2"
                     height="40"
                     transform="rotate(-90 489 282)"
-                    fill="#DEDEDE"
                   />
                   <rect
                     x="489"
@@ -164,9 +168,8 @@ export default function MoodSelector() {
                     width="2"
                     height="40"
                     transform="rotate(-90 489 282)"
-                    stroke="#DEDEDE"
-                    fill="#DEDEDE"
-                    className="stroke-secondary fill-secondary"
+                    stroke="var(--bg-secondary)"
+                    strokeWidth="5"
                   />
                 </g>
                 <g id="2">
@@ -176,7 +179,6 @@ export default function MoodSelector() {
                     width="2"
                     height="40"
                     transform="rotate(-134 426.184 137.67)"
-                    fill="#DEDEDE"
                   />
                   <rect
                     x="426.184"
@@ -184,17 +186,15 @@ export default function MoodSelector() {
                     width="2"
                     height="40"
                     transform="rotate(-134 426.184 137.67)"
-                    stroke="#DEDEDE"
-                    fill="#DEDEDE"
-                    className="stroke-secondary fill-secondary"
+                    stroke="var(--bg-secondary)"
+                    strokeWidth="5"
                   />
                 </g>
                 <path
                   id="Polygon 1"
                   d="M303.321 69H268.679L286 38.999L303.321 69Z"
-                  fill="#DEDEDE"
-                  stroke="#DEDEDE"
-                  className="stroke-secondary fill-secondary"
+                  fill="var(--bg-secondary)"
+                  stroke={theme == "night" ? "#dedede" : "var(--bg-background)"}
                 />
                 <g id="arrow">
                   <line
@@ -303,6 +303,17 @@ export default function MoodSelector() {
 
         <span className="bg-dots md:h-35 absolute inset-x-0 -bottom-5 -z-10 w-full"></span>
       </div>
+
+      <div className="bar"></div>
+      <div className="bar"></div>
+      <div className="bar"></div>
+      <div className="bar"></div>
+      <div className="bar"></div>
+      <div className="bar"></div>
+      <div className="bar"></div>
+      <div className="bar"></div>
+      <div className="bar"></div>
+      <div className="bar"></div>
     </div>
   );
 }
