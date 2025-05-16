@@ -9,7 +9,7 @@ import gsap from "gsap";
 import { Bloom, EffectComposer } from "@react-three/postprocessing";
 
 // GlobeModel.tsx
-const GlobeModel = (props: Group) => {
+const GlobeModel = (props: any) => {
   const group = useRef<Group>(null);
   const corneaRef = useRef<Mesh | null>(null);
   const { theme } = useHandleTheme();

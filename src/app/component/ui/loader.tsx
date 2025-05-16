@@ -12,9 +12,10 @@ import { useReveleAnimate } from "@/app/hooks/use-revele-animate";
 export default function MoodSelector() {
   const { theme, setHandleTheme } = useHandleTheme();
   const { handleMoodChange, mood } = useHandleMood();
+  const svgRef = useRef<SVGSVGElement>(null);
   const knobRef = useRef<SVGSVGElement>(null);
   const circleRef = useRef<SVGCircleElement | null>(null);
-  useReveleAnimate(circleRef);
+  useReveleAnimate(circleRef, knobRef);
 
   const dataTheme = useMemo(
     () => DataTheme.find((item) => item.name === theme),
@@ -23,9 +24,9 @@ export default function MoodSelector() {
 
   useEffect(() => {
     if (knobRef.current && dataTheme !== null) {
-      gsap.to(knobRef.current, {
+      gsap.to(svgRef.current, {
         rotation: dataTheme?.deg,
-        duration: 0.9,
+        duration: 0.8,
         ease: "back.out",
       });
     }
@@ -52,23 +53,24 @@ export default function MoodSelector() {
             height="575"
             viewBox="0 0 575 575"
             fill="none"
-            className="size-65 mt-8 rounded-full"
+            className="size-65 container-svg mt-8 rounded-full"
             xmlns="http://www.w3.org/2000/svg"
-            ref={knobRef}
+            opacity={0}
+            ref={svgRef}
           >
             <rect width="575" height="575" />
             <circle
               cx="287.5"
               cy="287.5"
               r="285.2"
-              stroke="#fefefe"
+              stroke="var(--bg-secondary)"
               strokeWidth="4"
               strokeDashoffset={0}
               fill="none"
               strokeLinecap="round"
               ref={circleRef}
             />
-            <g id="Clock_body">
+            <g id="Clock_body" style={{ opacity: 0 }} ref={knobRef}>
               <g id="Surface_top" filter="url(#filter0_d_0_1)"></g>
               <g id="Hours">
                 <g id="10">
@@ -203,7 +205,8 @@ export default function MoodSelector() {
                     y1="267"
                     x2="286"
                     y2="287"
-                    className="stroke-4 stroke-[#DEDEDE]"
+                    stroke="var(--bg-secondary)"
+                    strokeWidth="4"
                   />
                   <line
                     id="Line 6"
@@ -211,7 +214,8 @@ export default function MoodSelector() {
                     y1="277"
                     x2="276"
                     y2="277"
-                    className="stroke-4 stroke-[#DEDEDE]"
+                    stroke="var(--bg-secondary)"
+                    strokeWidth="4"
                   />
                 </g>
               </g>
@@ -258,7 +262,8 @@ export default function MoodSelector() {
           {DataTheme.map((mode, i) => (
             <button
               key={i}
-              className={`${mode.className} h-fit w-fit cursor-pointer uppercase tracking-wider transition-opacity ${
+              style={{ opacity: 0, scale: 0 }}
+              className={`option-color ${mode.className} h-fit w-fit cursor-pointer uppercase tracking-wider transition-opacity ${
                 theme === mode?.name ? "opacity-100" : "opacity-70"
               }`}
               onClick={() => handleClick(mode.name)}
@@ -279,15 +284,27 @@ export default function MoodSelector() {
               />
             </button>
           ))}
+
+          <ScrambleText
+            text="Connecting to the database..."
+            style={{ opacity: 0 }}
+            tick={7}
+            step={7}
+            className="status GT-america -translate-1/2 fixed left-1/2 top-1/2 whitespace-nowrap text-xs"
+          />
         </div>
 
-        <p className="min-w-3xs ms-2 tracking-wider">
+        <p
+          style={{ transform: `scaleY(0)` }}
+          className="cta min-w-3xs ms-2 tracking-wider"
+        >
           SET THE MOOD THAT MATCHES WITH YOUR VIBE
         </p>
 
         <button
           onClick={() => handleMoodChange("true")}
-          className={`${theme === "spring" ? "bg-[#dedede] text-[#161616]" : "bg-secondary text-primary"} mx-auto my-auto flex h-8 w-fit cursor-pointer items-center justify-center gap-1.5 rounded-full py-1 pe-2 ps-4 text-[15px]/[7px] font-medium tracking-wide`}
+          style={{ transform: `scaleY(0)` }}
+          className={`cta ${theme === "spring" ? "bg-[#dedede] text-[#161616]" : "bg-secondary text-primary"} mx-auto my-auto flex h-8 w-fit cursor-pointer items-center justify-center gap-1.5 rounded-full py-1 pe-2 ps-4 text-[15px]/[7px] font-medium tracking-wide`}
         >
           <ScrambleText
             overdrive={32}
@@ -301,7 +318,7 @@ export default function MoodSelector() {
           </span>
         </button>
 
-        <span className="bg-dots md:h-35 absolute inset-x-0 -bottom-5 -z-10 w-full"></span>
+        <span className="cta bg-dots md:h-35 absolute inset-x-0 -bottom-5 -z-10 w-full"></span>
       </div>
 
       <div className="bar"></div>

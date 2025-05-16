@@ -2,7 +2,7 @@ import { themeOption, TypeDataTheme } from "../libs/Index";
 
 export const DataTheme: TypeDataTheme[] = [
   {
-    name: "light",
+    name: "sky",
     deg: -45,
     className: "-left-1 top-1/10 absolute -rotate-45",
   },
@@ -27,13 +27,13 @@ export const themeColorMesh = {
   nightEye: "#161616",
   nightCornea: "#9D84FF",
 
-  lightGlobe: "#fefefe",
-  lightEye: "#dedede",
-  lightCornea: "#fefefe",
+  skyGlobe: "#D0ECF5",
+  skyEye: "#D0ECF5",
+  skyCornea: "#69C2EE", // ex-lightCornea
 };
 
 export const themeOptionsButton: { id: themeOption; color: string }[] = [
-  { id: "light", color: "#dedede" },
+  { id: "sky", color: "#69C2EE" },
   { id: "night", color: "#161616" },
   { id: "spring", color: "#d3e789" },
 ];

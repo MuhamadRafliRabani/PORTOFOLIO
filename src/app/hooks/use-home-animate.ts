@@ -28,8 +28,7 @@ export const useHomeAnimations = (
     timeline.to(
       ELEMENTS_TO_FADE,
       {
-        scale: 0.95,
-        opacity: 0,
+        scale: 0.8,
         duration: 0.5,
         ease: "power3.out",
         stagger: {

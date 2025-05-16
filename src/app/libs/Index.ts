@@ -44,7 +44,7 @@ export interface ProjectInfo {
   image: string;
 }
 
-export type themeOption = "night" | "light" | "spring";
+export type themeOption = "night" | "sky" | "spring";
 export type haveMoodOption = "true" | "false";
 
 export interface TypeDataTheme {
