@@ -47,7 +47,7 @@ export const useReveleAnimate = (
         },
         {
           opacity: 0,
-          duration: 3.5,
+          duration: 4,
           ease: "power2.in",
         },
         0,

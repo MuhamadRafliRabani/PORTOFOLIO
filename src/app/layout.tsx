@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body
         data-theme={theme}
-        className="bg-background text-text selection:bg-background selection:text-gray-950"
+        className="bg-background GT-america-thin text-text selection:bg-background selection:text-gray-950"
       >
         <Navbar />
         {children}

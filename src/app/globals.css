@@ -39,10 +39,10 @@
   --color-text: #fefefe;
   --stroke-muted: #eacda3;
   --fill-muted: #f6e2c3;
-  --bg-primary: #1e92e8;
+  --bg-primary: #69c2ee;
   --border-primary: #5a4a2f;
   --color-background: #f9ecd1;
-  --bg-background: #69c2ee;
+  --bg-background: #1e92e8;
   --border-background: #a87d4d;
   --bg-secondary: #fefefe;
   --border-secondary: #a87d4d;
@@ -119,26 +119,29 @@
 
 @font-face {
   font-family: "GT-America-Thin";
-  src: url("/fonts/GT-America-thin.otf") format("opentype");
+  src: url("/fonts/GT-America-Thin.otf") format("opentype");
   font-weight: 200;
   font-style: normal;
+}
+
+.GT-america {
+  font-family: GT-America, sans-serif;
+}
+
+.GT-america-thin {
+  font-family: GT-America-Thin, sans-serif;
+}
+
+body {
+  background-color: var(--bg-primary);
 }
 
 /* * {
   border: 1px solid red;
 } */
 
-.GT-america {
-  font-family: GT-America, sans-serif;
-}
-
 .embla__container {
   cursor: grab;
-}
-
-body {
-  background-color: var(--bg-primary);
-  font-family: GT-America-Thin, sans-serif;
 }
 
 #option-color::before {
