@@ -39,10 +39,10 @@ const PortofiloCard = ({ projectRef }: portofiloCard) => {
     <div
       ref={projectRef}
       style={{ transform: "translateX(1500px)", opacity: 0 }}
-      className="md:w-325 max-h-145 relative z-50 w-fit translate-y-[20vh] px-4 md:max-h-screen md:translate-y-[43vh] md:bg-[var(--bg-background)] md:px-0"
+      className="md:w-325 max-h-145 relative z-50 w-full translate-y-[20vh] px-4 md:max-h-screen md:translate-y-[43vh] md:bg-[var(--bg-background)] md:px-0"
     >
       <div className="embla__viewport w-full overflow-hidden" ref={emblaRef}>
-        <div className="embla__container flex h-full min-h-[90vh] flex-nowrap items-center justify-start gap-2 text-xs font-medium">
+        <div className="embla__container flex h-full min-h-[90vh] cursor-grab flex-nowrap items-center justify-start gap-2 text-xs font-medium">
           {portpfolio.map((data, index) => (
             <div
               key={index}

@@ -42,7 +42,7 @@ export default function MoodSelector() {
   const currentMood = mood === "false";
 
   return (
-    <div className="mood-selector z-9999 fixed inset-0 flex min-h-screen w-screen items-center justify-center">
+    <div className="mood-selector z-9999 fixed inset-0 flex min-h-screen w-screen items-center justify-center gap-0">
       <div className="grid-rows-[1fr 50px] z-60 mt-15 absolute inset-0 grid h-svh min-h-screen w-screen place-content-center justify-items-center gap-5">
         {/* Mode Selection */}
         <div
@@ -272,7 +272,7 @@ export default function MoodSelector() {
                 className={`mx-auto block size-2.5 rounded-full border ${
                   theme === mode?.name
                     ? "border-none bg-red-500"
-                    : "border-gray-500 bg-transparent"
+                    : "border-[var(--bg-secondary)] bg-transparent"
                 }`}
               />
               <ScrambleText

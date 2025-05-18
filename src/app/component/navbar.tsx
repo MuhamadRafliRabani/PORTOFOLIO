@@ -4,8 +4,8 @@ import { ScrambleText } from "./ui/scrumble-text";
 const Navbar = () => {
   return (
     <div
-      style={{ transform: `translateY(-200px)`, opacity: 0 }}
-      className="item fixed inset-x-0 top-0 z-50 flex min-h-14 items-end justify-between px-6 md:px-14"
+      style={{ transform: `translateY(-200px)` }}
+      className="navbar item fixed inset-x-0 top-0 z-50 flex min-h-14 items-end justify-between px-6 md:px-14"
     >
       <div className="md:min-w-59 flex items-end justify-between gap-2">
         <AlignStartHorizontal className="size-8 -rotate-90 duration-300" />

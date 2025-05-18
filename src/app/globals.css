@@ -140,24 +140,19 @@ body {
   border: 1px solid red;
 } */
 
-.embla__container {
-  cursor: grab;
-}
-
+/* 
 #option-color::before {
   content: "";
   z-index: -1;
   background-color: blue;
-  /* background-color: #161616; */
-  width: 20px;
-  height: 20px;
-  bottom: 1.4px;
+  width: 30px;
+  height: 30px;
+  bottom: 1.2px;
   rotate: -90deg;
-  left: 99%;
+  left: 100%;
   position: absolute;
-  border-top-left-radius: 0.5rem;
 }
-
+ */
 /* #option-color::after {
   content: "";
   z-index: -1;
@@ -202,6 +197,7 @@ body {
 
 .bar {
   background-color: var(--bg-background);
+  width: 10vw !important;
   @apply h-screen w-[10vw] origin-top;
 }
 
@@ -220,21 +216,6 @@ body {
 
 .background-svg {
   background-color: var(--bg-background);
-}
-
-@keyframes rotateGlobe {
-  0% {
-    transform: rotateZ(0deg);
-  }
-  100% {
-    transform: rotateZ(360deg);
-  }
-}
-
-.rotate-animation {
-  animation: rotateGlobe 20s linear infinite;
-  transform-origin: center;
-  transform-box: fill-box;
 }
 
 .card-info {

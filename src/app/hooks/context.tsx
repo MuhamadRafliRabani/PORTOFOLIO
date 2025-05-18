@@ -10,3 +10,5 @@ export const haveMood = atomWithStorage<haveMoodOption>("haveMood", "false");
 
 export const tooltipsVisisble = atom<boolean>(true);
 export const tooltipsText = atom("");
+
+export const animateReveleDone = atom<boolean>(false);

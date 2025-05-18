@@ -1,9 +1,4 @@
-"use client";
-import { useHandleTheme } from "@/app/hooks/use-handle-theme";
-
 const Background = () => {
-  const { theme } = useHandleTheme();
-
   return (
     <div className="fixed inset-x-3 inset-y-2 right-1 -z-10 overflow-hidden rounded-xl md:inset-4">
       <svg

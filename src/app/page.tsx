@@ -9,12 +9,10 @@ import { useHomeAnimations } from "./hooks/use-home-animate";
 import Background from "./component/ui/background";
 import Globe from "./component/ui/globe";
 import MoodSelector from "./component/ui/loader";
-import { useHandleMood } from "./hooks/use-handle-mood";
 
 function Home() {
   const appRef = useRef<HTMLDivElement>(null);
   const projectRef = useRef<HTMLDivElement>(null);
-  const { mood } = useHandleMood();
 
   useHomeAnimations(appRef, projectRef);
 
@@ -23,7 +21,7 @@ function Home() {
       ref={appRef}
       className="max-w-screen max-h-screen w-[98.5vw] overflow-hidden"
     >
-      <div className="max-w-320 relative m-auto my-5 grid h-[93svh] w-full grid-cols-1 grid-rows-2 items-end">
+      <div className="max-w-320 relative m-auto my-5 grid h-[95vh] w-full grid-cols-1 grid-rows-2 items-end overflow-hidden md:h-[93svh]">
         <div
           style={{ transform: `translateY(100px)` }}
           className="introduce md:translate-y-25 translate-y-45 ms-10 inline-block w-fit px-4"
