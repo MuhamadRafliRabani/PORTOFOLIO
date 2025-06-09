@@ -277,9 +277,7 @@ export default function MoodSelector() {
               />
               <ScrambleText
                 text={mode.name}
-                overdrive={32}
-                tick={1}
-                speed={0.9}
+                speed={25}
                 className="tracking-wide"
               />
             </button>
@@ -288,8 +286,6 @@ export default function MoodSelector() {
           <ScrambleText
             text="Connecting to the database..."
             style={{ opacity: 0 }}
-            tick={7}
-            step={7}
             className="status GT-america -translate-1/2 fixed left-1/2 top-1/2 whitespace-nowrap text-xs"
           />
         </div>
@@ -306,13 +302,7 @@ export default function MoodSelector() {
           style={{ transform: `scaleY(0)` }}
           className={`cta ${theme === "spring" ? "bg-[#dedede] text-[#161616]" : "bg-secondary text-primary"} mx-auto my-auto flex h-8 w-fit cursor-pointer items-center justify-center gap-1.5 rounded-full py-1 pe-2 ps-4 text-[15px]/[7px] font-medium tracking-wide`}
         >
-          <ScrambleText
-            overdrive={32}
-            tick={1}
-            speed={1}
-            text="SET MOOD"
-            className="tracking-wider"
-          />
+          <ScrambleText speed={25} text="SET MOOD" className="tracking-wider" />
           <span className="flex size-fit rounded-full bg-red-400">
             <Plus />
           </span>
