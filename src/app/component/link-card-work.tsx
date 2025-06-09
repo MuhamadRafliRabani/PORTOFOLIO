@@ -27,14 +27,13 @@ const RecentWork = () => {
         text="RECENT WORK"
         onMouseEnter={() => showTooltip("Scroll to see more")}
         onMouseLeave={hideTooltip}
-        className="block font-extralight tracking-widest md:text-sm"
+        className="md:h-50 h-30 w-37 block font-extralight tracking-widest md:w-60 md:text-sm"
       />
       <Image
-        src="/image/anflix-1.webp"
-        width={300}
-        height={200}
+        src="/image/work.png"
+        fill
         alt="project"
-        className="md:h-50 h-30 w-37 rounded-xl border border-white object-cover object-left md:w-60"
+        className="rounded-xl border border-white object-cover object-left"
         onMouseEnter={() => showTooltip("Preview Project")}
         onMouseLeave={hideTooltip}
       />

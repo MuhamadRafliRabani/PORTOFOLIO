@@ -12,3 +12,5 @@ export const tooltipsVisisble = atom<boolean>(true);
 export const tooltipsText = atom("");
 
 export const animateReveleDone = atom<boolean>(false);
+
+export const openPorto = atom<boolean>(false);

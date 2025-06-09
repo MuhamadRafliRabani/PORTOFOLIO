@@ -132,6 +132,16 @@
   font-family: GT-America-Thin, sans-serif;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Untuk Chrome, Safari, dan Opera */
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+
 body {
   background-color: var(--bg-primary);
 }
@@ -198,7 +208,7 @@ body {
 .bar {
   background-color: var(--bg-background);
   width: 10vw !important;
-  @apply h-screen w-[10vw] origin-top;
+  @apply h-screen min-w-[20vw] origin-top md:w-[10vw];
 }
 
 .cta {
@@ -239,4 +249,8 @@ body {
 [data-theme="spring"] .card-info {
   background-color: var(--color-text);
   color: var(--bg-background);
+}
+
+canvas {
+  background-color: transparent !important;
 }

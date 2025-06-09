@@ -5,9 +5,11 @@ import AnimateInformationCard from "./ui/animated-information-card";
 import { ScrambleText } from "./ui/scrumble-text";
 import useHandleOpen from "../hooks/use-handle-open";
 import { useHandleScrollToBottom } from "../hooks/useScrollByClick";
+import { useOpenPorto } from "../hooks/use-revele-animate-condion";
 
 const CircleNav = () => {
   const { handleOpen, isOpen } = useHandleOpen();
+  const { isOpen: isOpenPorto } = useOpenPorto();
   const rotateRef = useRef<HTMLSpanElement>(null);
 
   const rotateTo = (deg: number) => {
@@ -29,7 +31,11 @@ const CircleNav = () => {
       position: "right-[95%] md:right-full top-1/2 -translate-y-1/2",
       angle: 270,
       action: () => {
-        useHandleScrollToBottom();
+        if (window.innerWidth <= 768) {
+          isOpenPorto(true);
+        } else {
+          useHandleScrollToBottom();
+        }
         if (isOpen.name === isOpen.name && isOpen.open) {
           handleOpen(isOpen.name);
         }
@@ -52,7 +58,7 @@ const CircleNav = () => {
   return (
     <div
       style={{ transform: `translateY(300px)` }}
-      className="item z-60 relative -mb-8 me-7 inline-block md:me-4"
+      className="item z-99 relative -mb-8 me-7 inline-block md:me-4"
     >
       {/* Lingkaran navigasi */}
       <span

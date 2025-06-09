@@ -8,9 +8,9 @@ export interface ScrambleTextProps
   extends React.HTMLAttributes<HTMLDivElement> {
   text: string;
   speed?: number;
-  tick?: number;
-  step?: number;
-  overdrive?: number;
+  duration?: number;
+  chars?: string;
+  revealDelay?: number;
 }
 
 export interface NavCircleActionProps
@@ -41,7 +41,7 @@ export type Website = {
 export interface ProjectInfo {
   description: DescriptionItem[];
   website: Website;
-  image: string;
+  video: string;
 }
 
 export type themeOption = "night" | "sky" | "spring";

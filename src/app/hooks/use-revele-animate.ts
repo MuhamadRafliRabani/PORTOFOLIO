@@ -2,6 +2,9 @@ import gsap from "gsap";
 import { RefObject, useEffect } from "react";
 import { useHandleMood } from "./use-handle-mood";
 import { useReveleAnimateCondion } from "./use-revele-animate-condion";
+import { SplitText } from "gsap/SplitText";
+
+gsap.registerPlugin(SplitText);
 
 export const useReveleAnimate = (
   circleRef: RefObject<SVGCircleElement | null>,
@@ -19,6 +22,11 @@ export const useReveleAnimate = (
     const item = gsap.utils.toArray<HTMLElement>(".item");
     const cta = gsap.utils.toArray(".cta");
     const optionColor = gsap.utils.toArray(".option-color");
+    const split = SplitText.create(".introduce", {
+      type: "lines",
+      linesClass: "line",
+      mask: "lines",
+    });
 
     // animate stokeDashOffset
     const circle = circleRef.current;
@@ -106,20 +114,21 @@ export const useReveleAnimate = (
             {
               y: 0,
               opacity: 1,
-              duration: 0.8,
-              stagger: { each: 0.15, from: "end" },
+              duration: 0.6,
+              stagger: { each: 0.4, from: "end" },
               ease: "sine.inOut",
               onComplete: () => setStatus(true),
             },
             "<+0.4",
           )
-          .to(
-            ".introduce",
+          .from(
+            split.lines,
             {
-              x: -20,
-              y: 200,
-              duration: 0.9,
-              ease: "sine.inOut",
+              yPercent: 100,
+              autoAlpha: 0,
+              duration: 0.5,
+              ease: "expo.out",
+              stagger: 0.2,
             },
             "-=0.9",
           )
@@ -164,20 +173,22 @@ export const useReveleAnimate = (
               y: 0,
               opacity: 1,
               duration: 1,
-              stagger: { each: 0.2, from: "end" },
+              stagger: { each: 0.3, from: "end" },
               ease: "sine.inOut",
               onComplete: () => setStatus(true),
             },
             "<+0.5",
           )
-          .to(
-            ".introduce",
+          .from(
+            split.lines,
             {
-              y: 150,
-              duration: 1,
-              ease: "sine.inOut",
+              yPercent: 100,
+              autoAlpha: 0,
+              duration: 0.5,
+              ease: "expo.out",
+              stagger: 0.2,
             },
-            "-=1",
+            "-=0.4",
           )
           .to(
             cta,
@@ -205,6 +216,7 @@ export const useReveleAnimate = (
     return () => {
       tl.kill();
       mm.kill();
+      split.revert();
     };
   }, [circleRef, knobRef, mood, status]);
 };

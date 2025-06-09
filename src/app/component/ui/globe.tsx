@@ -2,7 +2,7 @@ import { Mesh, Group, MeshStandardMaterial } from "three";
 import { MeshBasicMaterial } from "three";
 import { useGLTF } from "@react-three/drei";
 import { themeColorMesh } from "@/app/data/theme";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useHandleTheme } from "@/app/hooks/use-handle-theme";
 import gsap from "gsap";
@@ -137,16 +137,20 @@ const GlobeModel = (props: any) => {
 
 // Globe.tsx
 const Globe = () => (
-  <Canvas className="globe max-h-115 h-full -translate-y-5 md:-translate-y-12">
+  <Canvas
+    onCreated={({ gl }) => {
+      gl.setClearColor(0x000000, 0);
+    }}
+    gl={{ alpha: true }}
+    className="globe max-h-115 h-full -translate-y-5 bg-transparent md:-translate-y-12"
+  >
     <ambientLight intensity={0} />
     <directionalLight position={[10, 10, 5]} intensity={0} />
     <pointLight position={[10, 10, -10]} intensity={0} />
 
-    <GlobeModel
-      scale={[2.6, 2.6, 2.6]}
-      // ❌ Tidak set position di sini, hanya di dalam animasi!
-      rotation={[-0.02, -0.2, -0.1]}
-    />
+    <Suspense fallback={null}>
+      <GlobeModel />
+    </Suspense>
   </Canvas>
 );
 

@@ -1,60 +1,73 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
-import { RefObject, useCallback, useEffect, useState } from "react";
+import { RefObject, useCallback, useEffect, useRef, useState } from "react";
 import { portpfolio } from "../data/portofolio";
-import { DescriptionItem } from "../libs/Index";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useHandleScrollToTop } from "../hooks/useScrollByClick";
-import useEmblaCarousel from "embla-carousel-react";
+import { useOpenPorto } from "../hooks/use-revele-animate-condion";
+import CardContent from "./portofolio/card-content";
 
-type portofiloCard = {
+// Tambahkan import Splide
+// @ts-ignore
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/react-splide/css";
+
+type PortofiloCardProps = {
   projectRef: RefObject<HTMLDivElement | null>;
 };
-const PortofiloCard = ({ projectRef }: portofiloCard) => {
+
+const PortofiloCard = ({ projectRef }: PortofiloCardProps) => {
   const [closeVisible, setCloseVisible] = useState<boolean>(false);
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: "start",
-    loop: true,
-  });
+  const { open, isOpen } = useOpenPorto();
+
+  // Config carousel
+  const splideOptions = {
+    type: "loop",
+    perPage: 2,
+    gap: "1rem",
+    arrows: false,
+    pagination: false,
+    drag: "free",
+    focus: "start",
+    breakpoints: { 768: { perPage: 1 }, 1024: { perPage: 2 } },
+  };
 
   const handlePrevSlide = useCallback(() => {
-    if (!emblaApi) return;
+    splideRef.current?.splide.go("<");
+  }, []);
 
-    emblaApi?.scrollPrev();
-  }, [emblaApi]);
   const handleNextSlide = useCallback(() => {
-    if (!emblaApi) return;
+    splideRef.current?.splide.go(">");
+  }, []);
 
-    emblaApi?.scrollNext();
-  }, [emblaApi]);
+  const splideRef = useRef<any>(null);
 
   useEffect(() => {
-    if (!emblaApi) return;
-
-    setCloseVisible(true);
-  }, [emblaApi]);
+    if (splideRef.current) setCloseVisible(true);
+  }, [splideRef.current]);
 
   return (
     <div
       ref={projectRef}
       style={{ transform: "translateX(1500px)", opacity: 0 }}
-      className="md:w-325 max-h-145 relative z-50 w-full translate-y-[20vh] px-4 md:max-h-screen md:translate-y-[43vh] md:bg-[var(--bg-background)] md:px-0"
+      className="absolute inset-2 z-50 w-full bg-[var(--bg-background)] px-4 md:px-0 md:pt-5"
     >
-      <div className="embla__viewport w-full overflow-hidden" ref={emblaRef}>
-        <div className="embla__container flex h-full min-h-[90vh] cursor-grab flex-nowrap items-center justify-start gap-2 text-xs font-medium">
-          {portpfolio.map((data, index) => (
+      <Splide
+        ref={splideRef}
+        options={splideOptions}
+        aria-label="Portfolio carousel"
+      >
+        {portpfolio.map((data, index) => (
+          <SplideSlide key={index}>
             <div
               key={index}
-              className="embla__slide h-full flex-[0_0_100%] overflow-hidden rounded-xl bg-[var(--bg-primary)] text-white md:flex-[0_0_50%]"
+              className="group h-full min-h-[500px] w-full overflow-hidden rounded-md bg-[var(--bg-primary)] text-white"
             >
               <CardContent data={data} />
             </div>
-          ))}
-        </div>
-      </div>
+          </SplideSlide>
+        ))}
+      </Splide>
 
-      {/* Controls (harus di luar .viewport) */}
       <div className="z-70 absolute inset-x-0 bottom-0 flex w-full items-center justify-between px-6 text-white md:px-0">
         <div className="space-x-4">
           <button
@@ -71,7 +84,13 @@ const PortofiloCard = ({ projectRef }: portofiloCard) => {
           </button>
         </div>
         <button
-          onClick={() => useHandleScrollToTop()}
+          onClick={() => {
+            if (window.innerWidth <= 768) {
+              isOpen(false);
+            } else {
+              useHandleScrollToTop();
+            }
+          }}
           style={
             closeVisible
               ? { opacity: 1 }
@@ -87,43 +106,3 @@ const PortofiloCard = ({ projectRef }: portofiloCard) => {
 };
 
 export default PortofiloCard;
-
-const CardContent = ({ data }: { data: (typeof portpfolio)[0] }) => (
-  <div className="GT-america md:min-w-xl grid-rows-[20px 2fr 20px] group grid h-full w-full gap-4 p-3.5 transition-all duration-300">
-    <div className="flex max-h-10 -translate-y-20 items-center justify-between transition-transform duration-300 ease-[cubic-bezier(0.36,_0,_0.64,_1)] group-hover:translate-y-0">
-      <Description descriptions={data.description} />
-    </div>
-    <Link href={data.website.link} target="_blank" rel="noopener noreferrer">
-      <Image
-        src={data.image}
-        alt={data.website.name}
-        width={800}
-        height={1000}
-        className="md:min-h-98 h-full w-full rounded-md object-cover object-left transition-transform duration-300 group-hover:scale-95"
-      />
-    </Link>
-    <span className="max-h-10 text-sm">
-      WEBSITE:
-      <Link
-        href={data.website.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block cursor-pointer text-[11px] underline"
-      >
-        {data.website.name}
-      </Link>
-    </span>
-  </div>
-);
-
-const Description: React.FC<{ descriptions: DescriptionItem[] }> = ({
-  descriptions,
-}) => (
-  <>
-    {descriptions.map((item, index) => (
-      <p key={index} className="opacity-70">
-        {item.name}: <span className="block text-[11px]">{item.value}</span>
-      </p>
-    ))}
-  </>
-);

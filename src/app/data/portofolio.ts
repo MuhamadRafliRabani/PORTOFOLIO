@@ -20,7 +20,7 @@ export const portpfolio: ProjectInfo[] = [
       name: "ANFLIX.VERCEL.APP",
       link: "http://anflix.vercel.app",
     },
-    image: "/image/anflix-1.webp",
+    video: "xavier-bostton.mp4",
   },
   {
     description: [
@@ -41,7 +41,7 @@ export const portpfolio: ProjectInfo[] = [
       name: "DASHBOARD",
       link: "https://ecommerce-and-dashboard-production.up.railway.app/login",
     },
-    image: "/space.png",
+    video: "xavier-bostton.mp4",
   },
   {
     description: [
@@ -62,6 +62,6 @@ export const portpfolio: ProjectInfo[] = [
       name: "DASHBOARD",
       link: "https://ecommerce-and-dashboard-production.up.railway.app/login",
     },
-    image: "/space.png",
+    video: "xavier-bostton.mp4",
   },
 ];

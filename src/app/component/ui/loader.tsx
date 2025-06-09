@@ -326,11 +326,11 @@ export default function MoodSelector() {
       <div className="bar"></div>
       <div className="bar"></div>
       <div className="bar"></div>
-      <div className="bar"></div>
-      <div className="bar"></div>
-      <div className="bar"></div>
-      <div className="bar"></div>
-      <div className="bar"></div>
+      <div className="bar hidden md:inline-block"></div>
+      <div className="bar hidden md:inline-block"></div>
+      <div className="bar hidden md:inline-block"></div>
+      <div className="bar hidden md:inline-block"></div>
+      <div className="bar hidden md:inline-block"></div>
     </div>
   );
 }

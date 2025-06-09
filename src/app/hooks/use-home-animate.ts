@@ -2,7 +2,10 @@
 import { useEffect } from "react";
 import { gsap } from "@/app/libs/gsap-configure";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useReveleAnimateCondion } from "./use-revele-animate-condion";
+import {
+  useOpenPorto,
+  useReveleAnimateCondion,
+} from "./use-revele-animate-condion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,6 +14,7 @@ export const useHomeAnimations = (
   projectRef: React.RefObject<HTMLDivElement | null>,
 ) => {
   const { status } = useReveleAnimateCondion();
+  const { open } = useOpenPorto();
 
   useEffect(() => {
     if (!status) return;
@@ -28,46 +32,71 @@ export const useHomeAnimations = (
     // MOBILE (max-width: 768px)
     // =======================
     mm.add("(max-width: 768px)", () => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: appRef.current,
-          start: "top top",
-          end: "+=600",
-          pin: true,
-          scrub: true,
-        },
-      });
+      const tl = gsap.timeline();
 
-      tl.fromTo(
-        ELEMENTS_TO_FADE,
-        {
-          y: 0,
-          opacity: 1,
-        },
-        {
-          y: 200,
-          opacity: 0,
-          zIndex: 10,
-          duration: 0.5,
-          ease: "power3.out",
-          stagger: {
-            each: 0.2,
-            from: "center",
+      if (open) {
+        // Animasi saat open = true
+        tl.fromTo(
+          ELEMENTS_TO_FADE,
+          {
+            y: 0,
+            opacity: 1,
           },
-        },
-        0,
-      );
+          {
+            opacity: 0,
+            duration: 0.5,
+            ease: "sine.out",
+            zIndex: -5,
+            stagger: {
+              each: 0.5,
+              from: "center",
+            },
+          },
+          0,
+        );
 
-      tl.to(
-        projectRef.current,
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power2.out",
-        },
-        0.3,
-      );
+        tl.to(
+          projectRef.current,
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "sine.out",
+          },
+          0.1,
+        );
+      } else {
+        // Animasi saat open = false (reset ke kondisi awal)
+        tl.fromTo(
+          ELEMENTS_TO_FADE,
+          {
+            opacity: 1,
+            zIndex: -5,
+          },
+          {
+            opacity: 1,
+            duration: 0.5,
+            ease: "sine.out",
+            zIndex: 5,
+            stagger: {
+              each: 0.2,
+              from: "center",
+            },
+          },
+          0,
+        );
+
+        tl.to(
+          projectRef.current,
+          {
+            x: 1500,
+            opacity: 0,
+            duration: 0.8,
+            ease: "sine.out",
+          },
+          0.1,
+        );
+      }
     });
 
     // =======================
@@ -115,7 +144,7 @@ export const useHomeAnimations = (
           duration: 0.5,
           ease: "power3.out",
           stagger: {
-            each: 0.2,
+            each: 0.5,
             from: "center",
           },
         },
@@ -124,6 +153,7 @@ export const useHomeAnimations = (
       tl.to(
         "#black-hole",
         {
+          scale: 1.2,
           opacity: 0.5,
           ease: "power2.inOut",
         },
@@ -194,10 +224,10 @@ export const useHomeAnimations = (
           opacity: 0,
           zIndex: 10,
           duration: 0.5,
-          ease: "power3.out",
+          ease: "sine.out",
           stagger: {
-            each: 0.2,
-            from: "center",
+            each: 0.3,
+            from: "end",
           },
         },
         0,
@@ -239,5 +269,5 @@ export const useHomeAnimations = (
     return () => {
       mm.kill(); // bunuh semua media query listeners & ScrollTrigger
     };
-  }, [appRef, projectRef, status]);
+  }, [appRef, projectRef, status, open]);
 };
