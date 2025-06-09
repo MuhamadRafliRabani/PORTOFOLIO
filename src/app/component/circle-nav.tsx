@@ -79,8 +79,6 @@ const CircleNav = () => {
         <ScrambleText
           key={text}
           text={text}
-          overdrive={32}
-          tick={1}
           speed={0.9}
           onClick={() => {
             rotateTo(angle);
