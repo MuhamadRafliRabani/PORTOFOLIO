@@ -55,10 +55,28 @@ export const useHomeAnimations = (
           0,
         );
 
+        if (navbar) {
+          tl.fromTo(
+            navbar,
+            {
+              y: 0,
+              opacity: 1,
+            },
+            {
+              y: -300,
+              opacity: 0,
+              duration: 1,
+              ease: "power3.out",
+              delay: 0.8,
+            },
+            "<=0.5",
+          );
+        }
+
         tl.to(
           projectRef.current,
           {
-            x: 0,
+            x: -5,
             opacity: 1,
             duration: 0.8,
             ease: "sine.out",
@@ -85,6 +103,18 @@ export const useHomeAnimations = (
           },
           0,
         );
+
+        if (navbar) {
+          tl.to(
+            navbar,
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+            },
+            "<=0.5",
+          );
+        }
 
         tl.to(
           projectRef.current,
@@ -201,6 +231,7 @@ export const useHomeAnimations = (
           {
             y: 0,
             opacity: 1,
+            duration: 0.8,
           },
           {
             y: -300,

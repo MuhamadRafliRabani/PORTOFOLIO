@@ -34,7 +34,7 @@ const CardContent = ({ data }: { data: (typeof portpfolio)[0] }) => {
         href={data.website.link}
         target="_blank"
         rel="noopener noreferrer"
-        className="md:max-h-70 h-full w-full"
+        className="md:max-h-70 max-h-45 h-full w-full"
       >
         <video
           ref={videoRef}

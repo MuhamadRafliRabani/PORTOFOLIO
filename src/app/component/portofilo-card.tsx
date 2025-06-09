@@ -49,7 +49,7 @@ const PortofiloCard = ({ projectRef }: PortofiloCardProps) => {
     <div
       ref={projectRef}
       style={{ transform: "translateX(1500px)", opacity: 0 }}
-      className="absolute inset-2 z-50 w-full bg-[var(--bg-background)] px-4 md:px-0 md:pt-5"
+      className="z-90 absolute inset-2 w-full bg-[var(--bg-background)] px-4 pt-40 md:px-0 md:pt-5"
     >
       <Splide
         ref={splideRef}
@@ -60,7 +60,7 @@ const PortofiloCard = ({ projectRef }: PortofiloCardProps) => {
           <SplideSlide key={index}>
             <div
               key={index}
-              className="group h-full min-h-[500px] w-full overflow-hidden rounded-md bg-[var(--bg-primary)] text-white"
+              className="group h-full min-h-[300px] w-full overflow-hidden rounded-md bg-[var(--bg-primary)] text-white md:min-h-[500px]"
             >
               <CardContent data={data} />
             </div>
@@ -68,7 +68,7 @@ const PortofiloCard = ({ projectRef }: PortofiloCardProps) => {
         ))}
       </Splide>
 
-      <div className="z-70 absolute inset-x-0 bottom-0 flex w-full items-center justify-between px-6 text-white md:px-0">
+      <div className="z-99 bottom-30 absolute inset-x-0 flex w-full items-center justify-between px-6 text-white md:bottom-0 md:px-0">
         <div className="space-x-4">
           <button
             onClick={handlePrevSlide}

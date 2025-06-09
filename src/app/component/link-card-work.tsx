@@ -27,13 +27,13 @@ const RecentWork = () => {
         text="RECENT WORK"
         onMouseEnter={() => showTooltip("Scroll to see more")}
         onMouseLeave={hideTooltip}
-        className="md:h-50 h-30 w-37 block font-extralight tracking-widest md:w-60 md:text-sm"
+        className="md:h-50 h-30 w-37 block -translate-y-8 font-extralight tracking-widest md:w-60 md:text-sm"
       />
       <Image
         src="/image/work.png"
         fill
         alt="project"
-        className="rounded-xl border border-white object-cover object-left"
+        className="rounded-md border border-white object-cover object-left"
         onMouseEnter={() => showTooltip("Preview Project")}
         onMouseLeave={hideTooltip}
       />

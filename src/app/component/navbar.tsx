@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className="md:min-w-59 md:-ms-170 flex items-end justify-between gap-2">
         <ScrambleText
           text="RAFLI RABANI [NR]"
-          className="font-light tracking-widest md:text-sm"
+          className="whitespace-nowrap font-light tracking-widest md:text-sm"
           duration={0.2}
           chars="___----___"
           speed={25}
@@ -19,7 +19,7 @@ const Navbar = () => {
         />
         <ScrambleText
           text="REACT DEVELOVER / LARAVEL DEVELOPER"
-          className="-me-24 hidden max-w-[140px] overflow-hidden font-extralight tracking-widest md:-mb-3 md:-me-40 md:inline-block md:text-sm/4"
+          className="-me-24 hidden max-w-[140px] overflow-hidden font-extralight tracking-widest opacity-0 md:-mb-3 md:-me-40 md:inline-block md:text-sm/4"
           chars="▲■●△□○◆◇"
           speed={25}
           revealDelay={0.1}

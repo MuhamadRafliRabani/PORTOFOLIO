@@ -5,6 +5,7 @@ import Navbar from "./component/navbar";
 import { useAtom } from "jotai";
 import { mainTheme } from "./hooks/context";
 import FloatingTooltip from "./component/ui/tooltips";
+import SmoothScroll from "./libs/smooth-scroll";
 
 export default function RootLayout({
   children,
@@ -19,8 +20,10 @@ export default function RootLayout({
         data-theme={theme}
         className="bg-background GT-america-thin text-text selection:bg-background selection:text-gray-950"
       >
-        <Navbar />
-        {children}
+        <SmoothScroll>
+          <Navbar />
+          {children}
+        </SmoothScroll>
         {/* <FloatingTooltip /> */}
       </body>
     </html>
